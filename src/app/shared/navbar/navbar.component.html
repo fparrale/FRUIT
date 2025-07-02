@@ -1,0 +1,105 @@
+<div class="flex items-center justify-between px-4 py-2 md:px-6">
+  <!-- Logo o título -->
+  <div class="flex items-center gap-4">
+    <!-- Ícono del menú o logo (opcional) -->
+    <button
+      class="w-8 h-8 flex items-center justify-center rounded-full bg-gray-100 text-gray-600 sm:hidden"
+      aria-label="Abrir menú"
+      type="button"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-5 h-5"
+        viewBox="0 0 20 20"
+        fill="currentColor"
+      >
+        <path d="M3 5h14M3 10h14M3 15h14"></path>
+      </svg>
+    </button>
+    <!-- Nombre de la página -->
+    <h6
+      class="text-gray-900 text-lg font-semibold block text-center w-full sm:w-auto"
+    >
+      {{ currentRouteName }}
+    </h6>
+  </div>
+
+  <!-- Usuario y Menú -->
+  <div class="flex items-center gap-4">
+    <!-- Saludo al usuario -->
+    <div class="hidden sm:flex items-center gap-2">
+      <span class="text-sm text-gray-600 font-medium"
+        >{{ "NAVBAR.HELLO" | translate }},</span
+      >
+      <span class="text-sm font-semibold text-gray-900"
+        >{{ fullName }} - {{ rolName }}</span
+      >
+    </div>
+
+    <!--MENU PERFIL OPCIONES-->
+    <div class="relative" (click)="toggleMenuOpciones()">
+      <div class="w-10 h-10 cursor-pointer">
+        <img
+          [src]="getPhotoUser()"
+          alt="Avatar del usuario"
+          class="w-full h-full rounded-full object-cover border border-gray-300"
+        />
+      </div>
+
+      <!-- Menú principal -->
+      <div
+        *ngIf="showMenu"
+        class="absolute right-0 mt-2 w-56 bg-white border border-gray-200 rounded-lg shadow-lg z-50"
+        (click)="$event.stopPropagation()"
+      >
+        <!-- Opción: Cambiar idioma -->
+        <div>
+          <button
+            (click)="toggleLanguageMenu()"
+            class="w-full text-sm font-medium text-left text-blue-500 px-4 py-2 hover:bg-gray-100 flex items-center gap-2"
+          >
+            <span class="material-icons text-base">translate</span>
+            {{ "NAVBAR.CHANGE_LANGUAGE" | translate }}
+            <span class="material-icons ml-auto text-xs">
+              {{ isLanguageMenuOpen ? "expand_less" : "expand_more" }}
+            </span>
+          </button>
+
+          <!-- Submenú de idiomas -->
+          <div *ngIf="isLanguageMenuOpen" class="pl-8 pr-4">
+            <button
+              (click)="changeLanguage('es')"
+              [ngClass]="
+                selectedLanguage === 'es' ? 'text-blue-500' : 'text-gray-700'
+              "
+              class="w-full text-left text-sm py-2 hover:bg-gray-100 rounded-md"
+            >
+            {{ "NAVBAR.SPANISH" | translate }}
+            </button>
+
+            <button
+              (click)="changeLanguage('en')"
+              [ngClass]="
+                selectedLanguage === 'en' ? 'text-blue-500' : 'text-gray-700'
+              "
+              class="w-full text-left text-sm py-2 hover:bg-gray-100 rounded-md"
+            >
+            {{ "NAVBAR.ENGLISH" | translate }}
+            </button>
+          </div>
+        </div>
+
+        <!-- Opción: Cerrar sesión -->
+        <button
+          class="w-full text-sm font-medium text-left text-red-500 px-4 py-2 flex items-center gap-2 hover:bg-red-500 hover:text-white transition-colors duration-200 rounded-md"
+          (click)="logout()"
+        >
+          <span class="material-icons text-base transition-colors duration-200"
+            >logout</span
+          >
+          {{ "NAVBAR.LOGOUT" | translate }}
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

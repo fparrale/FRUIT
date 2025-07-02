@@ -1,0 +1,267 @@
+{
+  "LOGIN": {
+    "GAME": "Let's play!",
+    "TITLE": "Login",
+    "EMAIL": "Email",
+    "PASSWORD": "Password",
+    "BUTTON": "Log in",
+    "FORGOT_PASSWORD": "Forgot your password?",
+    "NO_ACCOUNT": "Don't have an account?",
+    "SIGN_UP": "Sign up",
+    "SELECT_LANGUAGE": "Select Language",
+    "ENGLISH": "English",
+    "SPANISH": "Spanish",
+    "ERROR": {
+      "INVALID_CREDENTIALS": "Invalid credentials",
+      "EMAIL_REQUIRED": "Email is required",
+      "EMAIL_INVALID": "Email is invalid",
+      "PASSWORD_REQUIRED": "Password is required",
+      "PASSWORD_MIN_LENGTH": "Password must be at least 6 characters long"
+    }
+  },
+  "RESETPASSWORD": {
+    "GAME": "Let's play!",
+    "TITLE": "Reset Password",
+    "EMAIL": "Email",
+    "BUTTON": "Send",
+    "ERROR": {
+      "EMAIL_REQUIRED": "Email is required.",
+      "EMAIL_INVALID": "Please enter a valid email.",
+      "CODE_REQUIRED": "The code is required.",
+      "CODE_MUST": "The code must be 6 digits.",
+      "PASSWORD_REQUIRED": "Password is required",
+      "PASSWORD_MIN_LENGTH": "Password must be at least 8 characters long",
+      "PASSWORD_MATCH": "The passwords do not match."
+    },
+    "CLICK_HERE": "Click here",
+    "CODE": "OTP Code",
+    "PASSWORD": "Password",
+    "CONFIRM_PASSWORD": "Confirm Password",
+    "BUTTON_RESET_PASSWORD": "Reset Password",
+    "BACK_LOGIN": "Back to login"
+  },
+  "REGISTER": {
+    "GAME": "Let's play!",
+    "TITLE": "Register",
+    "NAMES": "Names",
+    "LAST_NAME": "last name",
+    "EMAIL": "Email",
+    "PASSWORD": "Password",
+    "ROL": "Select a role",
+    "ERROR": {
+      "NAME_REQUIRED": "Names are required.",
+      "LAST_NAME_REQUIRED": "Last names are required.",
+      "EMAIL_REQUIRED": "Email is required.",
+      "EMAIL_INVALID": "Please enter a valid email.",
+      "PASSWORD_REQUIRED": "Password is required.",
+      "ROL_SELECT": "You must select a role."
+    },
+    "BUTTTON": "Register",
+    "HAVE_ACCOUNT": "Already have an account?",
+    "LOGIN": "Log in here"
+  },
+  "NAVBAR": {
+    "HELLO": "Hi",
+    "LOGOUT": "Logout",
+    "ENGLISH": "English",
+    "SPANISH": "Spanish",
+    "CHANGE_LANGUAGE": "Change language"
+  },
+  "SIDEBAR": {
+    "HOME": "Home",
+    "USERS": "Users",
+    "GAME_ROOMS": "Game Rooms",
+    "GAME_HISTORY": "Game History",
+    "GAME": "Game",
+    "REPORT": "Report",
+    "LOGOUT": "Logout"
+  },
+  "HOME": {
+    "IMPORT_QUESTION": "Import Questions",
+    "DESCRIPTION_IMPORT_QUESTION": "Upload or import your question sets.",
+    "CREATE_GAME_ROOM": "Create Game Room",
+    "DESCRIPTION_GAME_ROOM": "Create a new game room",
+    "FIND_GAME_ROOM": "Find the Game Room",
+    "DESCRIPTION_FIND_GAME_ROOM": "Join an existing game session",
+    "FIND_PRACTICE_GAME_ROOM": "Find the Practice Game Room",
+    "DESCRIPTION_FIND_PRACTICE_GAME_ROOM": "Join an existing game session"
+  },
+  "TABLE": {
+    "CODE": "CODE",
+    "SCORE": "SCORE",
+    "FULL_NAME": "FULL NAMES",
+    "DURATION": "DURATION",
+    "ANSWERS" : "Answers",
+    "CREATION_DATE": "CREATION DATE",
+    "EXPIRATION_DATE": "EXPIRATION DATE",
+    "STATUS": "STATUS",
+    "ACTIONS": "ACTIONS",
+    "LINGUISTIC_VARIABLE": "Linguistic Variable",
+    "LINGUISTIC_VALUE": "Linguistic Value",
+    "LINGUISTIC_RECOMMENDATION": "Recommendation",
+    "OTHER_LINGUISTIC_VALUES": "Other Linguistic Values",
+    "VALUES": "Values",
+    "VIEW_ANSWERS": "View Answers",
+    "CONTINUE_GRAPHIC": "Continue graphic"
+  },
+  "BUTTON_NAVIGATION_TABLE": {
+    "NEXT": "Next",
+    "PREVIOUS": "Previous"
+  },
+  "GAME_CODE": {
+    "TITLE": "Enter the code to start",
+    "PLACEHOLDER": "Enter the game code",
+    "DESCRIPTION": "This code is unique to your game. Make sure you enter it correctly!"
+  },
+  "GAME_INSTRUCTIONS": {
+    "TITLE": "Game Instructions",
+    "OBJECTIVE_GAME": {
+      "TITLE": "Objective of the game:",
+      "ITEM_1": "Construct sentences or place correct words from the elements available for variables, values, and linguistic recommendations.",
+      "ITEM_2": "Each category must be completed correctly to advance to the next RNF."
+    },
+    "HOW_PLAY": {
+      "TITLE": "How to play:",
+      "ITEM_1": "Drag the available elements in the *Available Elements* or *Linguistic Values ​​Recommendations* section to form correct words or phrases:",
+      "ITEM_2": "In the Linguistic Variable and Linguistic Value box, it is completed with the *available elements* section.",
+      "ITEM_3": "In the box of other linguistic values, it is completed with the section *Recommendations of Linguistic Values*.",
+      "ITEM_4": "Advance to the next RNF with the button ",
+      "NEXT": "Next"
+    },
+    "SCORE": {
+      "TITLE": "Score:",
+      "ITEM_1": "The score for each category may vary depending on the teacher.",
+      "ITEM_2": "Your total score is calculated based on the correct answers submitted."
+    },
+    "TIPS": {
+      "TITLE": "Tips:",
+      "ITEM_1": "Please read the RNF description before starting.",
+      "ITEM_2": "Think about the logical order of the words before placing them in the boxes.",
+      "ITEM_3": "If you are not sure, you can rearrange the words by dragging them again.",
+      "ITEM_4": "Please review your answers before submitting them.",
+      "ITEM_5": "Avoid exiting or refreshing the screen as you may lose your progress."
+    },
+    "COMPLETION_CONDITIONS": {
+      "TITLE": "Completion Conditions:",
+      "ITEM_1": "The game ends when you complete all the (RNFs) correctly.",
+      "ITEM_2": "Your final score will be displayed at the end of the game."
+    },
+    "CLOSE": "Understood!"
+  },
+  "QUIZ": {
+    "OF": "of",
+    "TIME": "Time: ",
+    "AVAILABLE_ITEMS": "Available Items",
+    "RECOMMENDATIONS_LINGUISTIC_VALUES": "Recommendations for Linguistic Values",
+    "LINGUISTIC_VARIABLE": "Linguistic Variable",
+    "LINGUISTIC_VALUE": "Linguistic Value",
+    "OTHER_LINGUISTIC_VALUES": "Other Linguistic Values",
+    "BUTTON_FINISH": "Finish",
+    "BUTTON_CLOSE": "Close"
+  },
+  "MODAL_CONFIRMATION": {
+    "TITLE": "Confirmation",
+    "DESCRIPTION": "Please review your answers before submitting them:",
+    "LINGUISTIC_VARIABLE": "Linguistic Variable: ",
+    "LINGUISTIC_VALUE": "Linguistic Value: ",
+    "LINGUISTIC_RECOMMENDATION": "Linguistic Recommendation: ",
+    "BUTTON_SEND": "Send",
+    "BUTTON_CANCEL": "Cancel"
+  },
+  "RESULTS": {
+    "RESULTS": "Results",
+    "TITLE": "Game results",
+    "TOTAL_SCORE": "Total Score: ",
+    "DETAILS": "Details: ",
+    "LINGUISTIC_VARIABLE": "Linguistic Variable: ",
+    "LINGUISTIC_VALUE": "Linguistic Value: ",
+    "LINGUISTIC_RECOMMENDATION": "Linguistic Recommendation: ",
+    "YOUR_ANSWER": "Your Answer: ",
+    "FEEDBACK": "Feedback: ",
+    "BUTTON_CREATE_GRAPH" : "Create fuzzy set",
+    "BUTTON_EDIT_GRAPH" : "Edit fuzzy set",
+    "BUTTON_FINISH" : "Finish",
+    "NOT_GRAPHED": "Not graphed"
+  },
+  "GRAPHIC": {
+  "LINGUISTIC_VARIABLE": "Linguistic Variable",
+  "LINGUISTIC_VALUES": "Linguistic Values",
+  "LINGUISTIC_VALUE": "Linguistic Value",
+  "BELONGING_FUNCTION": "Membership Function",
+  "POINT_A": "Point A",
+  "POINT_B": "Point B",
+  "POINT_C": "Point C",
+  "POINT_D": "Point D",
+  "POINT_E": "Point E",
+  "ADD-VALUE": "Add Value",
+  "EDIT-VALUE": "Edit Value",
+  "CUSTOM_SCALE": "Customize Scale",
+  "SAVE_CHANGES" : "Save Changes",
+  "BACK": "Back",
+  "LIMIT_X": "X Axis Limit",
+  "JUMP_Y": "Y Step",
+  "APLICATION": "Apply",
+  "CANCEL": "Cancel",
+  "NOT_LINGUISTIC_VARIABLE": "No linguistic values ​​have been added."
+},
+  "GAME_ROOM": {
+    "BUTTON_CREATE": "Create Room",
+    "UPLOAD_QUESTION": "Upload Question: ",
+    "EXCEL_FILE": "Download Excel Example",
+    "ASSET": "Asset",
+    "IDLE": "Idle",
+    "ELIMINATED": "Eliminate",
+    "SEARCH_PLACEHOLDER": "Search by code...",
+    "SORT_BY_CODE": "Sort by Code",
+    "SORT_BY_DATE": "Sort by Creation Date",
+    "SORT_BY_EXPIRATION": "Sort by Expiration Date",
+    "SEARCH_PLACEHOLDER_RNF": "Search by rnf...",
+    "SORT_BY_RNF": "Sort by Rnf",
+    "PLAYER_HISTORY": "Player History"
+  },
+  "CREATE_GAME_ROOM": {
+    "MODAL_EDIT_CREATE_RNF": {
+      "ADD": "Add",
+      "UPDATE": "Update",
+      "BUTTON_EDIT": "Update",
+      "BUTTON_CLOSE": "Close",
+      "BUTTON_EDIT_MODAL": "Edit",
+      "BUTTON_ADD": "Add",
+      "BUTTON_ELIMINATE": "Eliminate",
+      "BUTTON_CREATE_ROOM": "Create Room",
+      "BUTTON_ADD_RNF": "Add RNF",
+      "COMPLETATION_DATE": "Completion Date: ",
+      "NFR": "Non-functional requirement",
+      "LINGUISTIC_VARIABLE": "Linguistic Variable",
+      "LINGUISTIC_VALUE": "Linguistic Value",
+      "LINGUISTIC_RECOMMENDATION": "Recommendation",
+      "OTHER_LINGUISTIC_VALUES": "Other Linguistic Values",
+      "WEIGHT": "Weight",
+      "FEEDBACK": "Feedback",
+      "ERROR": {
+        "NFR_REQUIRED": "The non-functional requirement is mandatory.",
+        "VARIABLE_REQUIRED": "The Variable Linguistic is mandatory.",
+        "FEEDBACK_REQUIRED": "The feedback is mandatory.",
+        "WEIGHT_REQUIRED": "The weight is mandatory.",
+        "LINGUISTIC_VALUE_REQUIRED": "The Linguistic Value is mandatory.",
+        "RECOMMENDATION_REQUIRED": "The recommendation is mandatory.",
+        "OTHER_LINGUISTIC_VALUES_REQUIRED": "The other linguistic values are mandatory."
+      }
+    }
+  },
+  "ALERT": {
+    "SUCCESS": "Success message",
+    "ERROR": "Error message",
+    "BUTTON_CLOSE": "Close",
+    "PRINT": "Print"
+  },
+  "REPORT": {
+    "GENERATE_REPORT": "Generate report"
+  },
+  "EDIT_GAME_ROOM":{
+    "DATE_EXPIRATION_BUTTON": "Change expiration date"
+  },
+  "QUESTION":{
+    "NFR": "NFR"
+  }
+}

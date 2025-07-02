@@ -1,0 +1,81 @@
+<div class="bg-white rounded-md p-4 container mx-auto">
+
+    <div class="mb-4 text-xl font-semibold text-gray-800">{{ 'QUESTION.NFR' | translate }}: {{ rnf_desc }}</div>
+
+    <div class="bg-white rounded-md p-4 flex items-center mb-4 justify-between">
+        <div>
+            <label class="text-left font-semibold">{{'GRAPHIC.LINGUISTIC_VARIABLE' | translate }}: </label>
+            <label class="text-left">{{ selectedLinguisticVariable }}</label>
+        </div>        
+        
+        <button [disabled]="!areNewValuesAvailable()" (click)="openAddValueModal()"
+            class="ml-4 min-w-[150px] bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md">
+            {{'GRAPHIC.ADD-VALUE' | translate}}
+        </button>
+    </div>
+
+    <div class="bg-gray-50 rounded-md p-4 mb-4">
+        <div class="col-span-full mb-1 font-semibold">
+            {{'GRAPHIC.LINGUISTIC_VALUES' | translate}}
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-2">
+            <div *ngFor="let lv of chartData.linguisticValues"
+                class="flex items-center justify-between border rounded-xl p-2 bg-white">
+                <span class="text-gray-700">{{ lv.nameValue }}</span>
+                <button
+                    class="text-blue-800 font-semibold py-1 px-2 rounded focus:outline-none focus:shadow-outline"
+                    (click)="openEditValueModal(lv)">
+                    <span class="material-icons text-blue-500">edit</span>
+                </button>
+            </div>
+            <div *ngIf="chartData.linguisticValues.length === 0" class="text-gray-400 italic col-span-full">
+                {{'GRAPHIC.NOT_LINGUISTIC_VARIABLE' | translate}}
+            </div>
+        </div>
+    </div>
+
+    <div class="mb-4 bg-white rounded-md p-4">
+        <app-line-chart [chartData]="chartData" [linguisticVariable]="selectedLinguisticVariable"></app-line-chart>
+    </div>
+
+    <div class="bg-white rounded-md p-4 flex items-center mb-4 justify-between">
+        
+        <div>
+            <button (click)="backResults()"
+                class="ml-4 min-w-[150px] bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md">
+                {{'GRAPHIC.BACK' | translate}}
+            </button>
+            
+            <button (click)="saveGrafic()"
+                class="ml-4 min-w-[150px] bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md">
+                {{'GRAPHIC.SAVE_CHANGES' | translate}}
+            </button>            
+        </div>
+   
+        <button (click)="openScaleModal()"
+            class="bg-[#28A745] hover:bg-green-700 text-white px-4 py-2 rounded-lg shadow-md focus:outline-none transition duration-300">
+            {{'GRAPHIC.CUSTOM_SCALE' | translate}}
+        </button>
+        
+    </div>
+
+
+    <div *ngIf="showAddValueModal"
+        class="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 flex justify-center items-center">
+        <app-linguistic-value [availableValues]="currentVariableValues" (close)="closeAddValueModal()"
+            (valueAdded)="onValueAdded($event)"></app-linguistic-value>
+    </div>
+    
+    <div *ngIf="showEditValueModal"
+        class="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 flex justify-center items-center">
+        <app-linguistic-value [availableValues]="currentVariableValues" [editingValue]="editingValue"
+            (close)="closeEditValueModal()" (valueAdded)="onValueEdited($event)"></app-linguistic-value>
+    </div>
+
+    <div *ngIf="showScaleModal"
+        class="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 flex justify-center items-center">
+        <app-personalize-scale [initialXLimit]="currentXAxisLimit" [initialYStep]="currentYAxisStep"
+            [maxXFromFunctions]="maxXFromFunctions" (scaleApplied)="onScaleApplied($event)"
+            (close)="closeScaleModal()"></app-personalize-scale>
+    </div>
+</div>

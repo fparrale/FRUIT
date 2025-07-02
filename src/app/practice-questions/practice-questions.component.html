@@ -1,0 +1,97 @@
+<div class="container">
+    <header class="header">
+      <h3>Identificación de Requisitos No Funcionales</h3>
+      <div class="score-display">Puntuación: {{ totalScore | number:'1.0-2' }}</div>
+    </header>
+
+    <div *ngIf="!gameCompleted" class="card question-card">
+        <app-timer
+          [duration]="30"
+          (timeUp)="onTimeUp()"
+          (timeRemainingChange)="updateTimeRemaining($event)">
+        </app-timer>
+
+        <div class="requirement-text">
+          <h3>Requisito No Funcional #{{ questionIndex + 1}} de {{ questions.length }}:</h3>
+          <p>{{ question.requirement }}</p>
+        </div>
+
+        <div [ngSwitch]="currentStep" class="step-container">
+          <!-- Step 1: Variable -->
+          <div *ngSwitchCase="'variable'" class="step">
+            <h4>Paso 1: Identifica la Variable No Funcional</h4>
+            <div class="options-grid">
+              <button *ngFor="let option of question.variable.options"
+                      [class.selected]="selectedOption === option"
+                      (click)="selectOption(option)"
+                      class="option-button"
+                      [disabled]="!!feedback">
+                {{ option }}
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 2: Value -->
+          <div *ngSwitchCase="'value'" class="step">
+            <h4>Paso 2: Identifica el Valor No Funcional</h4>
+            <div class="options-grid">
+              <button *ngFor="let option of question.value.options"
+                      [class.selected]="selectedOption === option"
+                      (click)="selectOption(option)"
+                      class="option-button"
+                      [disabled]="!!feedback">
+                {{ option }}
+              </button>
+            </div>
+          </div>
+
+          <!-- Step 3: Recommendation -->
+          <div *ngSwitchCase="'recommendation'" class="step">
+            <h4>Paso 3: Selecciona la Mejor Recomendación Técnica</h4>
+            <div class="options-grid">
+              <button *ngFor="let option of question.recommendation.options"
+                      [class.selected]="selectedOption === option"
+                      (click)="selectOption(option)"
+                      class="option-button"
+                      [disabled]="!!feedback">
+                {{ option }}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div *ngIf="feedback" class="feedback" [class.feedback-correct]="isCorrect" [class.feedback-incorrect]="!isCorrect">
+          <p>{{ feedback }}</p>
+          <div *ngIf="showNextButton" class="next-button-container">
+            <button (click)="nextStep()" class="btn btn-primary">
+              {{ isLastStep ? 'Siguiente Pregunta' : 'Siguiente Paso' }}
+            </button>
+          </div>
+        </div> -->
+
+        <div *ngIf="feedback" class="feedback" [class.feedback-correct]="isCorrect" [class.feedback-incorrect]="!isCorrect">
+            <p>{{ feedback }}</p>
+            <div *ngIf="showNextButton" class="next-button-container">
+              <button (click)="nextStep()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 border border-blue-700 rounded">
+                {{ isLastStep ? 'Finalizar Juego' : 'Siguiente Pregunta' }}
+              </button>
+            </div>
+          </div>
+
+        <div class="progress-bar">
+          <div class="progress-step" [class.active]="currentStep === 'variable'">1</div>
+          <div class="progress-line"></div>
+          <div class="progress-step" [class.active]="currentStep === 'value'">2</div>
+          <div class="progress-line"></div>
+          <div class="progress-step" [class.active]="currentStep === 'recommendation'">3</div>
+        </div>
+    </div>
+
+    <div *ngIf="gameCompleted" class="completion-card card">
+        <h2>¡Juego Completado!</h2>
+        <p class="final-score">Puntuación Final es {{ totalScore | number:'1.0-2' }} sobre 100</p>
+        <button class="btn btn-primary" (click)="restartGame()">
+          Jugar de Nuevo
+        </button>
+    </div>
+</div>

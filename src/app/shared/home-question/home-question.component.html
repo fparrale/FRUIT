@@ -1,0 +1,48 @@
+<div class="">
+
+  <main class="container mx-auto px-4 py-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+
+      <div *ngIf="canShowItemTeacher()"
+        class="bg-white shadow-lg rounded-lg p-6 hover:shadow-2xl transition-shadow cursor-pointer"
+        (click)="importQuestions()"
+      >
+        <div class="text-blue-600 text-4xl mb-4">📝</div>
+        <h5 class="text-lg font-bold mb-2">{{'HOME.IMPORT_QUESTION' | translate }}</h5>
+        <p class="text-gray-600">{{'HOME.DESCRIPTION_IMPORT_QUESTION' | translate }}</p>
+      </div>
+
+      <div *ngIf="canShowItemTeacher()"
+        class="bg-white shadow-lg rounded-lg p-6 hover:shadow-2xl transition-shadow cursor-pointer"
+        (click)="createGame()"
+      >
+        <div class="text-green-600 text-4xl mb-4">🎮</div>
+        <h5 class="text-lg font-bold mb-2">{{'HOME.CREATE_GAME_ROOM' | translate }}</h5>
+        <p class="text-gray-600">{{'HOME.DESCRIPTION_GAME_ROOM' | translate }}</p>
+      </div>
+
+      <div *ngIf="canShowItemStudent()"
+        class="bg-white shadow-lg rounded-lg p-6 hover:shadow-2xl transition-shadow cursor-pointer"
+        (click)="findGame('find')"
+      >
+        <div class="text-yellow-600 text-4xl mb-4">🔍</div>
+        <h5 class="text-lg font-bold mb-2">{{'HOME.FIND_GAME_ROOM' | translate }}</h5>
+        <p class="text-gray-600">{{'HOME.DESCRIPTION_FIND_GAME_ROOM' | translate }}</p>
+      </div>
+
+      <div *ngIf="canShowItemStudent()"
+        class="bg-white shadow-lg rounded-lg p-6 hover:shadow-2xl transition-shadow cursor-pointer"
+        (click)="findGame('practice')"
+      >
+        <div class="text-yellow-600 text-4xl mb-4">🪄</div>
+        <h5 class="text-lg font-bold mb-2">{{'HOME.FIND_PRACTICE_GAME_ROOM' | translate }}</h5>
+        <p class="text-gray-600">{{'HOME.DESCRIPTION_FIND_PRACTICE_GAME_ROOM' | translate }}</p>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <!-- <footer class="bg-gray-200 text-center py-4 mt-8">
+    <p class="text-gray-600">© 2024 Serious Game Hub. Todos los derechos reservados.</p>
+  </footer> -->
+</div>

@@ -1,0 +1,44 @@
+<div class="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 flex justify-center items-center">
+    <div class="bg-white rounded-md p-6 shadow-lg w-full max-w-md">
+        <h6 class="text-xl font-bold text-gray-800 mb-4">{{'GRAPHIC.CUSTOM_SCALE' | translate}}</h6>
+
+        <div class="mb-4">
+            <label for="xAxisLimitModal" class="block text-gray-700 font-medium mb-1">{{'GRAPHIC.LIMIT_X' | translate}}</label>
+            <input type="number" id="xAxisLimitModal" [(ngModel)]="xAxisLimit" required [min]="minXLimit"
+                #xAxisLimitInput="ngModel"
+                class="w-full bg-gray-50 p-3 rounded-xl outline-none border shadow-sm text-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-[#0D92F4] focus:border-transparent"
+                [class.border-red-500]="xAxisLimitInput.invalid && xAxisLimitInput.touched">
+            <div *ngIf="xAxisLimitInput.invalid && (xAxisLimitInput.dirty || xAxisLimitInput.touched)"
+                class="text-red-500 text-sm mt-1">
+                <div *ngIf="xAxisLimitInput.errors?.['required']">El límite del eje X es requerido.</div>
+                <div *ngIf="xAxisLimitInput.errors?.['min']">Debe ser mayor o igual a {{ minXLimit }}.</div>
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <label for="yAxisStepModal" class="block text-gray-700 font-medium mb-1">   {{'GRAPHIC.JUMP_Y' | translate}} (min 0.1, max
+                0.5)</label>
+            <input type="number" id="yAxisStepModal" [(ngModel)]="yAxisStep" required min="0.1" max="0.5" step="0.1"
+                #yAxisStepInput="ngModel"
+                class="w-full bg-gray-50 p-3 rounded-xl outline-none border shadow-sm text-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-[#0D92F4] focus:border-transparent"
+                [class.border-red-500]="yAxisStepInput.invalid && yAxisStepInput.touched">
+            <div *ngIf="yAxisStepInput.invalid && (yAxisStepInput.dirty || yAxisStepInput.touched)"
+                class="text-red-500 text-sm mt-1">
+                <div *ngIf="yAxisStepInput.errors?.['required']">El salto del eje Y es requerido.</div>
+                <div *ngIf="yAxisStepInput.errors?.['min']">Debe ser mayor o igual a 0.1.</div>
+                <div *ngIf="yAxisStepInput.errors?.['max']">Debe ser menor o igual a 0.5.</div>
+            </div>
+        </div>
+
+        <div class="flex justify-end mt-6">
+            <button (click)="applyScale()" [disabled]="!xAxisLimitInput.valid || !yAxisStepInput.valid"
+                class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md">
+                {{'GRAPHIC.APLICATION' | translate}}
+            </button>
+            <button (click)="closeModal()"
+                class="ml-2 bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg shadow-md">
+                {{'GRAPHIC.CANCEL' | translate}}
+            </button>
+        </div>
+    </div>
+</div>

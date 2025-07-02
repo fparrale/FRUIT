@@ -1,0 +1,123 @@
+<div style="background-color: #0D92F4;" class="absolute top-0 left-0 bottom-0 leading-5 h-full w-full overflow-hidden">
+</div>
+
+<div
+    class="relative min-h-screen flex flex-col-reverse sm:flex-row justify-center bg-transparent rounded-3xl shadow-xl p-6 sm:p-12">
+    <div
+        class="flex flex-col items-center lg:items-start justify-center lg:px-14 sm:max-w-4xl xl:max-w-md z-10 sm:order-1 order-2">
+        <div class="self-center lg:self-start flex flex-col text-center lg:text-left text-gray-300 mt-6 sm:mt-0">
+            <h3 style="color: #FFFFFF;" class="my-3 font-semibold text-4xl lg:text-4xl sm:text-3xl text-center">
+                {{ 'REGISTER.GAME' | translate }}
+            </h3>
+            <h1 style="color: #FFD628;" class="pr-3 text-sm sm:text-xl lg:text-xl">
+                FRUIT
+                <!-- Fuzzy<br />NFRQuest -->
+            </h1>
+        </div>
+    </div>
+
+    <div class="flex justify-center items-center self-center z-10 sm:order-2 order-1">
+        <div class="p-8 sm:p-10 bg-white mx-auto rounded-2xl w-full sm:w-auto max-w-lg shadow-lg">
+            <div class="mb-6">
+                <h3 class="font-semibold text-xl text-center text-[#0D92F4]">{{ 'REGISTER.TITLE' | translate }}</h3>
+            </div>
+            <form #registerForm="ngForm" (ngSubmit)="onSubmit()" class="space-y-4">
+                <div class="flex space-x-4">
+                    <div class="flex-1">
+
+                        <input type="text" id="name" name="name" [(ngModel)]="registerUser.name" required
+                            #nameInput="ngModel" placeholder="{{ 'REGISTER.NAMES' | translate }}"
+                            class="w-full bg-gray-50 p-3 rounded-xl outline-none border border-gray-200 shadow-sm text-grey-700 text-sm" />
+
+                        <div *ngIf="nameInput.invalid && (nameInput.dirty || nameInput.touched)"
+                            class="error-message text-xs text-red-500 mt-1 ml-1">
+                            <div *ngIf="nameInput.errors?.['required']">{{ 'REGISTER.ERROR.NAME_REQUIRED' | translate }}</div>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <input type="text" id="last_name" name="last_name" [(ngModel)]="registerUser.last_name" required
+                            #lastNameInput="ngModel" placeholder="{{ 'REGISTER.LAST_NAME' | translate }}"
+                            class="w-full bg-gray-50 p-3 rounded-xl outline-none border border-gray-200 shadow-sm text-grey-700 text-sm" />
+
+                        <div *ngIf="lastNameInput.invalid && (lastNameInput.dirty || lastNameInput.touched)"
+                            class="error-message text-xs text-red-500 mt-1 ml-1">
+                            <div *ngIf="lastNameInput.errors?.['required']">{{ 'REGISTER.ERROR.LAST_NAME_REQUIRED' | translate }}</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="flex space-x-4">
+                    <div class="flex-1">
+
+                        <input type="email" id="email" name="email" [(ngModel)]="registerUser.email" required email
+                            #emailInput="ngModel" placeholder="{{ 'REGISTER.EMAIL' | translate }}" autocomplete="new-email"
+                            class="w-full bg-gray-50 p-3 rounded-xl outline-none border border-gray-200 shadow-sm text-grey-700 text-sm" />
+
+                        <div *ngIf="emailInput.invalid && (emailInput.dirty || emailInput.touched)"
+                            class="error-message text-xs text-red-500 mt-1 ml-1">
+                            <div *ngIf="emailInput.errors?.['required']">{{ 'REGISTER.ERROR.EMAIL_REQUIRED' | translate }}</div>
+                            <div *ngIf="emailInput.errors?.['email']">{{ 'REGISTER.ERROR.EMAIL_INVALID' | translate }}</div>
+                        </div>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex items-center relative">
+                            <input [type]="showPassword ? 'text' : 'password'" id="password" name="password"
+                                [(ngModel)]="registerUser.password" required #passwordInput="ngModel"
+                                placeholder="{{ 'REGISTER.PASSWORD' | translate }}" autocomplete="new-password"
+                                class="w-full bg-gray-50 p-3 rounded-xl outline-none border border-gray-200 shadow-sm text-grey-700 text-sm" />
+
+                            <button type="button" (click)="togglePasswordVisibility()"
+                                class="absolute right-3 text-gray-400 hover:text-gray-600 focus:outline-none">
+                                <ng-container *ngIf="showPassword; else hideIcon">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor" class="h-5 w-5">
+                                        <path
+                                            d="M12 4.5C7.305 4.5 3.354 7.823 2.1 12c1.253 4.177 5.205 7.5 9.9 7.5 4.696 0 8.648-3.323 9.9-7.5-1.253-4.177-5.205-7.5-9.9-7.5zm0 11.25c-2.07 0-3.75-1.68-3.75-3.75S9.93 8.25 12 8.25s3.75 1.68 3.75 3.75-1.68 3.75-3.75 3.75z" />
+                                        <circle cx="12" cy="12" r="2.25" />
+                                    </svg>
+                                </ng-container>
+                                <ng-template #hideIcon>
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke="currentColor" class="h-5 w-5">
+                                        <path
+                                            d="M12 4.5C7.305 4.5 3.354 7.823 2.1 12c1.253 4.177 5.205 7.5 9.9 7.5 4.696 0 8.648-3.323 9.9-7.5-1.253-4.177-5.205-7.5-9.9-7.5zm0 11.25c-2.07 0-3.75-1.68-3.75-3.75S9.93 8.25 12 8.25s3.75 1.68 3.75 3.75-1.68 3.75-3.75 3.75z" />
+                                        <circle cx="12" cy="12" r="2.25" />
+                                        <line x1="2" y1="2" x2="22" y2="22" stroke="currentColor" stroke-width="1.5" />
+                                    </svg>
+                                </ng-template>
+                            </button>
+                        </div>
+                        <div *ngIf="passwordInput.invalid && (passwordInput.dirty || passwordInput.touched)"
+                            class="error-message text-xs text-red-500 mt-1 ml-1">
+                            <div *ngIf="passwordInput.errors?.['required']">{{ 'REGISTER.ERROR.PASSWORD_REQUIRED' | translate }}</div>
+                        </div>
+                    </div>
+                </div>
+
+                <select id="roles" name="roles" [(ngModel)]="registerUser.role" required #roleSelect="ngModel"
+                    class="w-full bg-gray-50 p-3 rounded-xl outline-none border border-gray-200 shadow-sm text-grey-700 text-sm">
+                    <option value="" disabled selected class="text-gray-500">{{ 'REGISTER.ROL' | translate }}</option>
+                    <option *ngFor="let role of roles" [value]="role.id">{{ role.name }}</option>
+                </select>
+
+                <div *ngIf="roleSelect.invalid && (roleSelect.dirty || roleSelect.touched)"
+                    class="error-message text-xs text-red-500 mt-1 ml-1">
+                    <div *ngIf="roleSelect.errors?.['required']">{{'REGISTER.ERROR.ROL_SELECT' | translate }}.</div>
+                </div>
+
+                <div>
+                    <button type="submit" [disabled]="!registerForm.valid"
+                        class="w-full bg-[#0D92F4] hover:bg-blue-500 text-white py-3 rounded-2xl text-sm font-medium focus:outline-none focus:ring-2 focus:ring-blue-400 shadow-md transition duration-200">
+                        {{ 'REGISTER.BUTTTON' | translate }}
+                    </button>
+                    <div class="login-redirect text-center mt-4 text-sm text-gray-600">
+                        <p>
+                            {{ 'REGISTER.HAVE_ACCOUNT' | translate }}
+                            <a (click)="navigationToPage('/login')" class="text-[#0D92F4] font-medium hover:underline">{{'REGISTER.LOGIN' | translate}}</a>
+                        </p>
+                    </div>
+
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

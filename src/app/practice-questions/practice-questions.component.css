@@ -1,0 +1,118 @@
+.question-card {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .requirement-text {
+    margin-bottom: 20px;
+    padding: 15px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+  }
+
+  .options-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 10px;
+    margin: 15px 0;
+  }
+
+  .option-button {
+    padding: 15px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    background: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .option-button:hover:not([disabled]) {
+    background: #f0f0f0;
+    transform: translateY(-2px);
+  }
+
+  .option-button.selected {
+    border-color: #1976d2;
+    background: #e3f2fd;
+  }
+
+  .feedback {
+    padding: 15px;
+    margin-top: 20px;
+    border-radius: 8px;
+  }
+
+  .feedback-correct {
+    background-color: #e8f5e9;
+    color: #2e7d32;
+  }
+
+  .feedback-incorrect {
+    background-color: #ffebee;
+    color: #c62828;
+  }
+
+  .progress-bar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+  }
+
+  .progress-step {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+  }
+
+  .progress-step.active {
+    background: #1976d2;
+    color: white;
+  }
+
+  .progress-line {
+    height: 2px;
+    width: 50px;
+    background: #ddd;
+  }
+
+  .next-button-container {
+    margin-top: 15px;
+    text-align: right;
+  }
+
+
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+  }
+
+  .header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+  }
+
+  .score-display {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #1976d2;
+  }
+
+  .completion-card {
+    text-align: center;
+    padding: 40px;
+  }
+
+  .final-score {
+    font-size: 2em;
+    color: #1976d2;
+    margin: 20px 0;
+  }

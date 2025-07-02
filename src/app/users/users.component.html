@@ -1,0 +1,66 @@
+<div class="py-10">
+    <!-- Contenedor de tabla responsiva -->
+    <div class="bg-white shadow-md rounded-lg overflow-hidden">
+        <div class="overflow-x-auto">
+            <table class="min-w-full table-auto">
+                <thead class="bg-[#0D92F4] text-white">
+                    <tr>
+                        <th class="px-4 py-3 text-left text-sm font-medium uppercase tracking-wider whitespace-nowrap">
+                            Id</th>
+                        <th class="px-4 py-3 text-left text-sm font-medium uppercase tracking-wider whitespace-nowrap">
+                            Name</th>
+                        <th class="px-4 py-3 text-left text-sm font-medium uppercase tracking-wider whitespace-nowrap">
+                            Surnames</th>
+                        <th class="px-4 py-3 text-left text-sm font-medium uppercase tracking-wider whitespace-nowrap">
+                            Username</th>
+                        <th class="px-4 py-3 text-left text-sm font-medium uppercase tracking-wider whitespace-nowrap">
+                            Email</th>
+                        <th class="px-4 py-3 text-left text-sm font-medium uppercase tracking-wider whitespace-nowrap">
+                            Id Role</th>
+                        <th class="px-4 py-3 text-left text-sm font-medium uppercase tracking-wider whitespace-nowrap">
+                            Role Name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Iterar sobre los datos paginados -->
+                    <tr *ngFor="let user of paginatedData" class="odd:bg-gray-50 even:bg-gray-100 hover:bg-gray-200">
+                        <td class="px-4 py-4 text-sm text-gray-700 whitespace-nowrap">{{ user.id }}</td>
+                        <td class="px-4 py-4 text-sm text-gray-700 whitespace-nowrap">{{ user.name }}</td>
+                        <td class="px-4 py-4 text-sm text-gray-700 whitespace-nowrap">{{ user.last_name }}</td>
+                        <td class="px-4 py-4 text-sm text-gray-700 whitespace-nowrap">{{ user.username }}</td>
+                        <td class="px-4 py-4 text-sm text-gray-700 whitespace-nowrap">{{ user.email }}</td>
+                        <td class="px-4 py-4 text-sm text-gray-700 whitespace-nowrap">{{ user.id_rol }}</td>
+                        <td class="px-4 py-4 text-sm text-gray-700 whitespace-nowrap">{{ user.name_rol }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Paginación -->
+    <div class="flex justify-center items-center mt-6 space-x-2">
+        <!-- Botón "Anterior" -->
+        <button
+            class="px-4 py-2 text-sm font-medium text-gray-500 bg-gray-100 border border-gray-300 rounded-md hover:bg-gray-200 hover:text-gray-700 transition-colors duration-300"
+            [disabled]="currentPage === 1" [ngClass]="currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''"
+            (click)="prevPage()">
+            &laquo; {{ 'BUTTON_NAVIGATION_TABLE.PREVIOUS' | translate }}
+        </button>
+
+        <!-- Botones de páginas -->
+        <button *ngFor="let page of [].constructor(totalPages); let i = index"
+            class="px-4 py-2 text-sm font-medium border rounded-md transition-colors duration-300" [ngClass]="currentPage === i + 1 
+            ? 'bg-[#0D92F4] text-white border-blue-500' 
+            : 'bg-gray-100 text-gray-500 border-gray-300 hover:bg-gray-200 hover:text-gray-700'"
+            (click)="goToPage(i + 1)">
+            {{ i + 1 }}
+        </button>
+
+        <!-- Botón "Siguiente" -->
+        <button
+            class="px-4 py-2 text-sm font-medium text-gray-500 bg-gray-100 border border-gray-300 rounded-md hover:bg-gray-200 hover:text-gray-700 transition-colors duration-300"
+            [disabled]="currentPage === totalPages"
+            [ngClass]="currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''" (click)="nextPage()">
+            {{ 'BUTTON_NAVIGATION_TABLE.NEXT' | translate }}&raquo;
+        </button>
+    </div>

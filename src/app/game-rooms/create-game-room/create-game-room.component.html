@@ -1,0 +1,245 @@
+<div *ngIf="showModal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50 px-4">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-4xl max-h-full overflow-y-auto">
+        <h6 class="text-xl font-bold text-gray-800 mb-4"> {{ editIndex === null ? ('CREATE_GAME_ROOM.MODAL_EDIT_CREATE_RNF.ADD' | translate) : ('CREATE_GAME_ROOM.MODAL_EDIT_CREATE_RNF.UPDATE' | translate) }}</h6>
+        <form (ngSubmit)="guardarRNF()" #rnfForm="ngForm">
+
+            <div class="grid grid-cols-1 gap-4 mb-4">
+                <div>
+                    <label for="rnf" class="block text-gray-700 font-medium mb-1">{{('CREATE_GAME_ROOM.MODAL_EDIT_CREATE_RNF.NFR' | translate)}}</label>
+                    <input type="text" id="rnf" name="rnf"
+                        class="w-full bg-gray-50 p-3 rounded-xl outline-none border shadow-sm text-gray-700 text-sm"
+                        [class.border-red-500]="rnf.invalid && rnf.touched" [(ngModel)]="newRnf.nfr" #rnf="ngModel"
+                        required />
+                    <div *ngIf="rnf.invalid && rnf.touched" class="text-red-500 text-sm mt-1">{{'CREATE_GAME_ROOM.MODAL_EDIT_CREATE_RNF.ERROR.NFR_REQUIRED' | translate}}</div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                <div>
+                    <label for="variable" class="block text-gray-700 font-medium mb-1">{{ 'CREATE_GAME_ROOM.MODAL_EDIT_CREATE_RNF.LINGUISTIC_VARIABLE' | translate}}</label>
+                    <input type="text" id="variable" name="variable"
+                        class="w-full bg-gray-50 p-3 rounded-xl outline-none border shadow-sm text-gray-700 text-sm"
+                        [class.border-red-500]="variable.invalid && variable.touched" [(ngModel)]="newRnf.variable"
+                        #variable="ngModel" required />
+                    <div *ngIf="variable.invalid && variable.touched" class="text-red-500 text-sm mt-1">{{'CREATE_GAME_ROOM.MODAL_EDIT_CREATE_RNF.ERROR.VARIABLE_REQUIRED' | translate}}</div>
+                </div>
+                <div>
+                    <label for="feedback1" class="block text-gray-700 font-medium mb-1">{{ 'CREATE_GAME_ROOM.MODAL_EDIT_CREATE_RNF.FEEDBACK' | translate}}</label>
+                    <input type="text" id="feedback1" name="feedback1"
+                        class="w-full bg-gray-50 p-3 rounded-xl outline-none border shadow-sm text-gray-700 text-sm"
+                        [class.border-red-500]="feedback1.invalid && feedback1.touched" [(ngModel)]="newRnf.feedback1"
+                        #feedback1="ngModel" required />
+                    <div *ngIf="feedback1.invalid && feedback1.touched" class="text-red-500 text-sm mt-1">{{'CREATE_GAME_ROOM.MODAL_EDIT_CREATE_RNF.ERROR.FEEDBACK_REQUIRED' | translate}}</div>
+                </div>
+                <div>
+                    <label for="weightVarible" class="block text-gray-700 font-medium mb-1">{{ 'CREATE_GAME_ROOM.MODAL_EDIT_CREATE_RNF.WEIGHT' | translate}}</label>
+                    <input type="text" id="weightVarible" name="weightVarible" placeholder="0.00"
+                        (input)="onNumberInput($event, 1)"
+                        class="w-full bg-gray-50 p-3 rounded-xl outline-none border shadow-sm text-gray-700 text-sm"
+                        [class.border-red-500]="weightVarible.invalid && weightVarible.touched"
+                        [(ngModel)]="newRnf.weightVarible" #weightVarible="ngModel" required />
+                    <div *ngIf="weightVarible.invalid && weightVarible.touched" class="text-red-500 text-sm mt-1">{{'CREATE_GAME_ROOM.MODAL_EDIT_CREATE_RNF.ERROR.WEIGHT_REQUIRED' | translate}}</div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                <div>
+                    <label for="value" class="block text-gray-700 font-medium mb-1">{{'CREATE_GAME_ROOM.MODAL_EDIT_CREATE_RNF.LINGUISTIC_VALUE' | translate}}</label>
+                    <input type="text" id="value" name="value"
+                        class="w-full bg-gray-50 p-3 rounded-xl outline-none border shadow-sm text-gray-700 text-sm"
+                        [class.border-red-500]="value.invalid && value.touched" [(ngModel)]="newRnf.value"
+                        #value="ngModel" required />
+                    <div *ngIf="value.invalid && value.touched" class="text-red-500 text-sm mt-1">{{'CREATE_GAME_ROOM.MODAL_EDIT_CREATE_RNF.ERROR.LINGUISTIC_VALUE_REQUIRED' | translate}}</div>
+                </div>
+                <div>
+                    <label for="feedback2" class="block text-gray-700 font-medium mb-1">{{'CREATE_GAME_ROOM.MODAL_EDIT_CREATE_RNF.FEEDBACK' | translate}}</label>
+                    <input type="text" id="feedback2" name="feedback2"
+                        class="w-full bg-gray-50 p-3 rounded-xl outline-none border shadow-sm text-gray-700 text-sm"
+                        [class.border-red-500]="feedback2.invalid && feedback2.touched" [(ngModel)]="newRnf.feedback2"
+                        #feedback2="ngModel" required />
+                    <div *ngIf="feedback2.invalid && feedback2.touched" class="text-red-500 text-sm mt-1">{{'CREATE_GAME_ROOM.MODAL_EDIT_CREATE_RNF.ERROR.FEEDBACK_REQUIRED' | translate}}</div>
+                </div>
+                <div>
+                    <label for="weightValue" class="block text-gray-700 font-medium mb-1">{{ 'CREATE_GAME_ROOM.MODAL_EDIT_CREATE_RNF.WEIGHT' | translate}}</label>
+                    <input type="text" id="weightValue" name="weightValue" placeholder="0.00"
+                        (input)="onNumberInput($event, 2)"
+                        class="w-full bg-gray-50 p-3 rounded-xl outline-none border shadow-sm text-gray-700 text-sm"
+                        [class.border-red-500]="weightValue.invalid && weightValue.touched"
+                        [(ngModel)]="newRnf.weightValue" #weightValue="ngModel" required />
+                    <div *ngIf="weightValue.invalid && weightValue.touched" class="text-red-500 text-sm mt-1">{{'CREATE_GAME_ROOM.MODAL_EDIT_CREATE_RNF.ERROR.WEIGHT_REQUIRED' | translate}}</div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4">
+                <div>
+                    <label for="recomend" class="block text-gray-700 font-medium mb-1">{{'CREATE_GAME_ROOM.MODAL_EDIT_CREATE_RNF.LINGUISTIC_RECOMMENDATION' | translate}}</label>
+                    <input type="text" id="recomend" name="recomend"
+                        class="w-full bg-gray-50 p-3 rounded-xl outline-none border shadow-sm text-gray-700 text-sm"
+                        [class.border-red-500]="recomend.invalid && recomend.touched" [(ngModel)]="newRnf.recomend"
+                        #recomend="ngModel" required />
+                    <div *ngIf="recomend.invalid && recomend.touched" class="text-red-500 text-sm mt-1">{{'CREATE_GAME_ROOM.MODAL_EDIT_CREATE_RNF.ERROR.RECOMMENDATION_REQUIRED' | translate}}</div>
+                </div>
+                <div>
+                    <label for="feedback3" class="block text-gray-700 font-medium mb-1">{{'CREATE_GAME_ROOM.MODAL_EDIT_CREATE_RNF.FEEDBACK' | translate}}</label>
+                    <input type="text" id="feedback3" name="feedback3"
+                        class="w-full bg-gray-50 p-3 rounded-xl outline-none border shadow-sm text-gray-700 text-sm"
+                        [class.border-red-500]="feedback3.invalid && feedback3.touched" [(ngModel)]="newRnf.feedback3"
+                        #feedback3="ngModel" required />
+                    <div *ngIf="feedback3.invalid && feedback3.touched" class="text-red-500 text-sm mt-1">{{'CREATE_GAME_ROOM.MODAL_EDIT_CREATE_RNF.ERROR.FEEDBACK_REQUIRED' | translate}}.</div>
+                </div>
+                <div>
+                    <label for="weightRecomend" class="block text-gray-700 font-medium mb-1">{{'CREATE_GAME_ROOM.MODAL_EDIT_CREATE_RNF.WEIGHT' | translate}}</label>
+                    <input type="text" id="weightRecomend" name="weightRecomend" placeholder="0.00"
+                        class="w-full bg-gray-50 p-3 rounded-xl outline-none border shadow-sm text-gray-700 text-sm"
+                        [class.border-red-500]="weightRecomend.invalid && weightRecomend.touched"
+                        [(ngModel)]="newRnf.weightRecomend" #weightRecomend="ngModel" (input)="onNumberInput($event, 3)"
+                        required />
+                    <div *ngIf="weightRecomend.invalid && weightRecomend.touched" class="text-red-500 text-sm mt-1">
+                        {{'CREATE_GAME_ROOM.MODAL_EDIT_CREATE_RNF.ERROR.WEIGHT_REQUIRED' | translate}}
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="grid grid-cols-1 gap-4 mb-4">
+                <div>
+                    <label for="other_recommended_values" class="block text-gray-700 font-medium mb-1">{{'CREATE_GAME_ROOM.MODAL_EDIT_CREATE_RNF.OTHER_LINGUISTIC_VALUES' | translate}}</label>
+                    <input type="text" id="other_recommended_values" name="other_recommended_values"
+                        placeholder="valor1,valor2,valor3"
+                        class="w-full bg-gray-50 p-3 rounded-xl outline-none border shadow-sm text-gray-700 text-sm"
+                        [class.border-red-500]="other_recommended_values.invalid && other_recommended_values.touched"
+                        [(ngModel)]="newRnf.other_recommended_values" #other_recommended_values="ngModel" required />
+                    <div *ngIf="other_recommended_values.invalid && other_recommended_values.touched"
+                        class="text-red-500 text-sm mt-1">{{'CREATE_GAME_ROOM.MODAL_EDIT_CREATE_RNF.ERROR.OTHER_LINGUISTIC_VALUES_REQUIRED' | translate}}</div>
+                </div>
+            </div>
+
+            <!-- Validar -->
+            <!-- <div class="grid grid-cols-1 gap-4 mb-4">
+                <div>
+                    <label for="validar" class="block text-gray-700 font-medium mb-1">Validar</label>
+                    <input type="text" id="validar" name="validar"
+                        class="w-full bg-gray-50 p-3 rounded-xl outline-none border shadow-sm text-gray-700 text-sm"
+                        [class.border-red-500]="validar.invalid && validar.touched" [(ngModel)]="newRnf.validar"
+                        #validar="ngModel" required />
+                    <div *ngIf="validar.invalid && validar.touched" class="text-red-500 text-sm mt-1">Validar es
+                        obligatorio</div>
+                </div>
+            </div> -->
+
+            <!-- Botones -->
+            <div class="flex justify-end mt-6">
+                <button type="submit" class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md"
+                    [disabled]="rnfForm.invalid">{{ editIndex === null ? ('CREATE_GAME_ROOM.MODAL_EDIT_CREATE_RNF.BUTTON_ADD' | translate) : ('CREATE_GAME_ROOM.MODAL_EDIT_CREATE_RNF.BUTTON_EDIT' | translate) }}</button>
+                <button type="button"
+                    class="ml-2 bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg shadow-md"
+                    (click)="showModal = false">{{'CREATE_GAME_ROOM.MODAL_EDIT_CREATE_RNF.BUTTON_CLOSE' | translate}}</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div class="py-5">
+    <div class="flex flex-wrap gap-6 mb-6 items-center">
+        <button (click)="openModal()"
+            class="flex items-center gap-2 px-4 py-2 text-white bg-[#28A745] rounded-lg shadow-md hover:bg-green-700 focus:outline-none transition duration-300 sm:w-auto text-center">
+            <span class="material-icons text-base">add</span>
+            {{'CREATE_GAME_ROOM.MODAL_EDIT_CREATE_RNF.BUTTON_ADD_RNF' | translate}}
+        </button>
+
+        <div class="flex items-center gap-2">
+
+            <label class="text-gray-700 font-medium whitespace-nowrap"> {{'CREATE_GAME_ROOM.MODAL_EDIT_CREATE_RNF.COMPLETATION_DATE' | translate}} </label>
+
+            <input type="date" [min]="today" [(ngModel)]="selectedDate"
+                class="w-full bg-gray-50 p-3 rounded-xl outline-none border shadow-sm text-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-[#0D92F4] focus:border-transparent" />
+
+            <select [(ngModel)]="selectedHour"
+                class="w-full bg-gray-50 p-3 rounded-xl outline-none border shadow-sm text-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-[#0D92F4] focus:border-transparent">
+                <option *ngFor="let hour of hours" [value]="hour">{{ hour }}</option>
+            </select>
+            <span class="text-gray-700 font-medium">:</span>
+            <select [(ngModel)]="selectedMinute"
+                class="w-full bg-gray-50 p-3 rounded-xl outline-none border shadow-sm text-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-[#0D92F4] focus:border-transparent">
+                <option *ngFor="let minute of minutes" [value]="minute">{{ minute }}</option>
+            </select>
+        </div>
+        <div class="flex items-center gap-2">
+            <label for="fileInput" class="text-sm font-medium text-gray-700">
+              {{ 'GAME_ROOM.UPLOAD_QUESTION' | translate }}
+            </label>
+            <input
+              id="fileInput"
+              type="file"
+              (change)="onFileSelected($event)"
+              accept=".xlsx, .xls"
+              class="w-auto px-3 py-2 text-sm border border-gray-300 rounded-lg shadow-sm focus:ring-blue-500 focus:border-blue-500 transition duration-300 cursor-pointer"
+            />
+          </div>
+        <!-- <div class="flex items-center gap-4">
+            <label class="text-gray-700 font-medium whitespace-nowrap">Duración (minutos):</label>
+            <select [(ngModel)]="duration"
+                class="w-full bg-gray-50 p-3 rounded-xl outline-none border shadow-sm text-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-[#0D92F4] focus:border-transparent">
+                <option *ngFor="let time of durations" [value]="time">{{ time }} min.</option>
+            </select>
+        </div> -->
+    </div>
+
+
+    <div class="bg-white shadow-md rounded-lg overflow-hidden">
+        <div class="overflow-x-auto">
+            <table class="min-w-full table-auto">
+                <thead class="bg-[#0D92F4] text-white">
+                    <tr>
+                        <th class="px-4 py-3 text-left text-sm font-medium uppercase tracking-wider whitespace-nowrap">
+                            RNF</th>
+                        <th class="px-4 py-3 text-left text-sm font-medium uppercase tracking-wider whitespace-nowrap">
+                            {{ 'TABLE.LINGUISTIC_VARIABLE' | translate}}</th>
+                        <th class="px-4 py-3 text-left text-sm font-medium uppercase tracking-wider whitespace-nowrap">
+                            {{ 'TABLE.LINGUISTIC_VALUE' | translate}}</th>
+                        <th class="px-4 py-3 text-left text-sm font-medium uppercase tracking-wider whitespace-nowrap">
+                            {{ 'TABLE.LINGUISTIC_RECOMMENDATION' | translate}}</th>
+                        <th class="px-4 py-3 text-left text-sm font-medium uppercase tracking-wider whitespace-nowrap">
+                            {{ 'TABLE.OTHER_LINGUISTIC_VALUES' | translate}}</th>
+                        <th class="px-4 py-3 text-left text-sm font-medium uppercase tracking-wider whitespace-nowrap">
+                            {{ 'TABLE.VALUES' | translate}}</th>
+                        <th class="px-4 py-3 text-left text-sm font-medium uppercase tracking-wider whitespace-nowrap">
+                            {{ 'TABLE.ACTIONS' | translate}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let rnf of listRnf; let i = index"
+                        class="odd:bg-gray-50 even:bg-gray-100 hover:bg-gray-200">
+                        <td class="px-4 py-4 text-sm text-gray-700 whitespace-nowrap">{{ rnf.nfr }}</td>
+                        <td class="px-4 py-4 text-sm text-gray-700 whitespace-nowrap">{{ rnf.variable }}</td>
+                        <td class="px-4 py-4 text-sm text-gray-700 whitespace-nowrap">{{ rnf.value }}</td>
+                        <td class="px-4 py-4 text-sm text-gray-700 whitespace-nowrap">{{ rnf.recomend }}</td>
+                        <td class="px-4 py-4 text-sm text-gray-700 whitespace-nowrap">{{ rnf.other_recommended_values }}
+                        </td>
+                        <td class="px-4 py-4 text-sm text-gray-700 whitespace-nowrap">{{ rnf.validar }}</td>
+                        <td class="px-4 py-4 text-sm text-gray-700 whitespace-nowrap">
+                            <div class="flex gap-2">
+                                <button (click)="onEdit(rnf, i)"
+                                    class="px-2 py-1 text-xs font-medium text-white bg-[#0D92F4] rounded hover:bg-blue-700 focus:outline-none">
+                                    {{ 'CREATE_GAME_ROOM.MODAL_EDIT_CREATE_RNF.BUTTON_EDIT_MODAL' | translate}}
+                                </button>
+                                <button (click)="onDelete(rnf)"
+                                    class="px-2 py-1 text-xs font-medium text-white bg-[#C62E2E] rounded hover:bg-red-700 focus:outline-none">
+                                    {{ 'CREATE_GAME_ROOM.MODAL_EDIT_CREATE_RNF.BUTTON_ELIMINATE' | translate}}
+                                </button>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="flex justify-end mt-4">
+    <button (click)="createGameRoomService()"
+        class="bg-[#0D6EFD] hover:bg-[#0D92F4] text-white px-6 py-2 rounded-lg shadow-md transition duration-300">
+        {{ 'CREATE_GAME_ROOM.MODAL_EDIT_CREATE_RNF.BUTTON_CREATE_ROOM' | translate}}
+    </button>
+</div>

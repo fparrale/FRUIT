@@ -1,0 +1,270 @@
+
+<div class="mb-6 p-4 bg-white rounded-lg shadow-md">
+  <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+    <!-- Search Box -->
+    <div class="relative flex-1">
+      <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+        <svg class="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+      </div>
+      <input 
+        type="text" 
+        [(ngModel)]="searchTerm" 
+        (input)="searchGameRooms()"
+        placeholder="{{ 'GAME_ROOM.SEARCH_PLACEHOLDER' | translate }}"
+        class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition duration-150 ease-in-out"
+      >
+    </div>
+
+    <!-- Sort Buttons -->
+    <div class="flex flex-wrap gap-3">
+      <button 
+        (click)="toggleSort('code')" 
+        class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-150 ease-in-out"
+      >
+        <span>{{ 'GAME_ROOM.SORT_BY_CODE' | translate }}</span>
+        <svg 
+          class="ml-2 h-5 w-5" 
+          [ngClass]="{
+            'transform rotate-180': sortField === 'code' && sortDirection === 'desc'
+          }"
+          fill="none" 
+          stroke="currentColor" 
+          viewBox="0 0 24 24"
+        >
+          <path 
+            *ngIf="sortField !== 'code'" 
+            stroke-linecap="round" 
+            stroke-linejoin="round" 
+            stroke-width="2" 
+            d="M8 9l4-4 4 4m0 6l-4 4-4-4"
+          />
+          <path 
+            *ngIf="sortField === 'code'" 
+            stroke-linecap="round" 
+            stroke-linejoin="round" 
+            stroke-width="2" 
+            [attr.d]="sortDirection === 'asc' ? 'M8 9l4-4 4 4' : 'M8 15l4 4 4-4'"
+          />
+        </svg>
+      </button>
+
+      <button 
+        (click)="toggleSort('createdAt')" 
+        class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-150 ease-in-out"
+      >
+        <span>{{ 'GAME_ROOM.SORT_BY_DATE' | translate }}</span>
+        <svg 
+          class="ml-2 h-5 w-5" 
+          [ngClass]="{
+            'transform rotate-180': sortField === 'createdAt' && sortDirection === 'desc'
+          }"
+          fill="none" 
+          stroke="currentColor" 
+          viewBox="0 0 24 24"
+        >
+          <path 
+            *ngIf="sortField !== 'createdAt'" 
+            stroke-linecap="round" 
+            stroke-linejoin="round" 
+            stroke-width="2" 
+            d="M8 9l4-4 4 4m0 6l-4 4-4-4"
+          />
+          <path 
+            *ngIf="sortField === 'createdAt'" 
+            stroke-linecap="round" 
+            stroke-linejoin="round" 
+            stroke-width="2" 
+            [attr.d]="sortDirection === 'asc' ? 'M8 9l4-4 4 4' : 'M8 15l4 4 4-4'"
+          />
+        </svg>
+      </button>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="showModal" class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50">
+  <div class="bg-white rounded-lg shadow-lg w-5/6 max-w-3xl">
+      <div class="px-4 pt-4 border-b border-gray-200">
+          <h3 class="text-xl font-bold text-gray-800 m-0">{{ 'TABLE.ANSWERS' | translate }}</h3>
+      </div>
+
+      <div class="p-6 max-h-[70vh] overflow-y-auto">
+          <ul id="print-content" class="space-y-6">
+              <li *ngFor="let question of selectedAnswers; ; let last = last" class="text-gray-700">
+                  <!-- NFR -->
+                  <p>
+                      <strong class="font-semibold">{{ 'QUESTION.NFR' | translate }}:</strong> 
+                      {{ question.nfr }}
+                  </p>
+
+                  <!-- correct_variable -->
+                  <div class="flex items-center space-x-2">
+                      <strong class="font-semibold">{{ 'MODAL_CONFIRMATION.LINGUISTIC_VARIABLE' | translate }}</strong>
+                      <span class="text-sm text-gray-600">({{ question.user_variable }})</span>
+                      <span>
+                          <span *ngIf="question.correct_variable" class="text-green-500 text-lg font-bold">✔</span>
+                          <span *ngIf="!question.correct_variable" class="text-red-500 text-lg font-bold">✘</span>
+                      </span>
+                  </div>
+                  <!-- Feedback para correct_variable -->
+                  <p *ngIf="!question.correct_variable" class="text-sm text-red-500">
+                      <strong>{{'RESULTS.FEEDBACK' | translate }}</strong> 
+                      {{ question.feedback_variable || ('NO_FEEDBACK' | translate) }}
+                  </p>
+
+                  <!-- correct_value -->
+                  <div class="flex items-center space-x-2">
+                      <strong class="font-semibold">{{ 'MODAL_CONFIRMATION.LINGUISTIC_VALUE' | translate }}</strong>
+                      <span class="text-sm text-gray-600">({{ question.user_value }})</span>
+                      <span>
+                          <span *ngIf="question.correct_value" class="text-green-500 text-lg font-bold">✔</span>
+                          <span *ngIf="!question.correct_value" class="text-red-500 text-lg font-bold">✘</span>
+                      </span>
+                  </div>
+                  <!-- Feedback para correct_value -->
+                  <p *ngIf="!question.correct_value" class="text-sm text-red-500">
+                      <strong>{{ 'RESULTS.FEEDBACK' | translate }}</strong> 
+                      {{ question.feedback_value || ('NO_FEEDBACK' | translate) }}
+                  </p>
+
+                  <!-- correct_recomend -->
+                  <div class="flex items-center space-x-2">
+                      <strong class="font-semibold">{{ 'MODAL_CONFIRMATION.LINGUISTIC_RECOMMENDATION' | translate }}</strong>
+                      <span class="text-sm text-gray-600">({{ question.user_recomend }})</span>
+                      <span>
+                          <span *ngIf="question.correct_recomend" class="text-green-500 text-lg font-bold">✔</span>
+                          <span *ngIf="!question.correct_recomend" class="text-red-500 text-lg font-bold">✘</span>
+                      </span>
+                  </div>
+                  <!-- Feedback para correct_recomend -->
+                  <p *ngIf="!question.correct_recomend" class="text-sm text-red-500">
+                      <strong>{{ 'RESULTS.FEEDBACK' | translate }}</strong> 
+                      {{ question.feedback_recomend || ('NO_FEEDBACK' | translate) }}
+                  </p>
+
+                  <p *ngIf="!graphicExists(question.id)" class="italic border border-gray-400 text-gray-400 rounded-md px-2 py-1 inline-block">{{ 'RESULTS.NOT_GRAPHED' | translate }}</p>
+
+                  <div *ngIf="graphicExists(question.id)" class="mb-4 bg-white rounded-md p-4">
+                    <app-line-chart [chartData]="getChartData(question.id)" [linguisticVariable]="getChartData(question.id).linguisticVariable" (chartRendered)="onChartRendered($event)"></app-line-chart>      
+                  </div>
+
+                 <!-- Separador condicional -->
+                 <hr *ngIf="!last" class="mt-6 border-t border-gray-300">
+              </li>
+          </ul>
+      </div>
+
+      <div class="p-4 border-t border-gray-200 flex justify-end">
+        <!-- Botón de cerrar -->
+        <button 
+            class="px-6 py-2 bg-red-500 text-white text-sm font-semibold rounded-lg shadow hover:bg-red-600 focus:outline-none focus:ring focus:ring-red-300 transition"
+            (click)="closeModal()">
+            {{ 'ALERT.BUTTON_CLOSE' | translate }}
+        </button>
+    
+        <!-- Botón de imprimir -->
+        <button 
+            class="ml-4 px-6 py-2 bg-blue-500 text-white text-sm font-semibold rounded-lg shadow hover:bg-blue-600 focus:outline-none focus:ring focus:ring-blue-300 transition"
+            (click)="printResults()">
+            {{ 'ALERT.PRINT' | translate }}
+        </button>
+    </div>
+    
+  </div>
+</div>
+
+
+<div class="py-10">
+    <!-- Contenedor de tabla responsiva -->
+    <div class="bg-white shadow-md rounded-lg overflow-hidden">
+      <div class="overflow-x-auto">
+        <table class="min-w-full table-auto">
+          <thead class="bg-[#0D92F4] text-white">
+            <tr>
+              <th class="px-4 py-3 text-left text-sm font-medium uppercase tracking-wider whitespace-nowrap">Id</th>
+              <th class="px-4 py-3 text-left text-sm font-medium uppercase tracking-wider whitespace-nowrap">{{ 'TABLE.CODE' | translate }}</th>
+              <th class="px-4 py-3 text-left text-sm font-medium uppercase tracking-wider whitespace-nowrap">{{ 'TABLE.CREATION_DATE' | translate }}</th>
+              <th class="px-4 py-3 text-left text-sm font-medium uppercase tracking-wider whitespace-nowrap">{{ 'TABLE.SCORE' | translate }}</th>
+              <th class="px-4 py-3 text-left text-sm font-medium uppercase tracking-wider whitespace-nowrap">{{ 'TABLE.DURATION' | translate }}</th>
+              <th class="px-4 py-3 text-left text-sm font-medium uppercase tracking-wider whitespace-nowrap">{{ 'TABLE.ACTIONS' | translate }}</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Iterar sobre los datos paginados -->
+            <tr *ngFor="let game of paginatedData" class="odd:bg-gray-50 even:bg-gray-100 hover:bg-gray-200">
+              <td class="px-4 py-4 text-sm text-gray-700 whitespace-nowrap">{{ game.id }}</td>
+              <td class="px-4 py-4 text-sm text-gray-700 whitespace-nowrap">{{ game.game_room.code }}</td>
+              <td class="px-4 py-4 text-sm text-gray-700 whitespace-nowrap">{{ game.created_at }}</td>
+              <td class="px-4 py-4 text-sm font-semibold"
+                  [ngClass]="game.score >= 70 ? 'text-green-500' : 'text-red-500'">
+                {{ game.score }} / 100
+              </td>
+              <td class="px-4 py-4 text-sm text-gray-700 whitespace-nowrap">{{ game.duration }}</td>
+              <td class="px-4 py-4 text-sm text-gray-700 whitespace-nowrap">
+                <div class="flex gap-2">
+                  
+                  <button class="px-2 py-1 text-xs font-medium text-white bg-[#0D92F4] rounded hover:bg-blue-700 focus:outline-none"
+                    (click)="openAnswersModal(game.answered_questions, game)">
+                    {{ 'TABLE.VIEW_ANSWERS' | translate }}
+                  </button>
+
+                  <button [disabled]="!game.isGraphicMissing || isExpiredGame(game.game_room.expiration_date)"
+                    class="px-2 py-1 text-xs font-medium text-white rounded"
+                    [ngClass]="!game.isGraphicMissing || isExpiredGame(game.game_room.expiration_date) ? 'bg-gray-400 text-gray-600 cursor-not-allowed' : 'hover:bg-green-700 focus:outline-none bg-[#28A745]'"
+                    (click)="goResults(game)">
+                    {{ 'TABLE.CONTINUE_GRAPHIC' | translate }}
+                  </button>
+
+                </div>
+                
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  
+    <!-- Paginación -->
+    <div class="flex justify-center items-center mt-6 space-x-2">
+      <!-- Botón "Anterior" -->
+      <button
+        class="px-4 py-2 text-sm font-medium text-gray-500 bg-gray-100 border border-gray-300 rounded-md hover:bg-gray-200 hover:text-gray-700 transition-colors duration-300"
+        [disabled]="currentPage === 1"
+        [ngClass]="currentPage === 1 ? 'opacity-50 cursor-not-allowed' : ''"
+        (click)="prevPage()"
+      >
+        &laquo; {{ 'BUTTON_NAVIGATION_TABLE.PREVIOUS' | translate }}
+      </button>
+    
+      <!-- Botones de páginas -->
+      <button
+        *ngFor="let page of [].constructor(totalPages); let i = index"
+        class="px-4 py-2 text-sm font-medium border rounded-md transition-colors duration-300"
+        [ngClass]="currentPage === i + 1 
+          ? 'bg-[#0D92F4] text-white border-blue-500' 
+          : 'bg-gray-100 text-gray-500 border-gray-300 hover:bg-gray-200 hover:text-gray-700'"
+        (click)="goToPage(i + 1)"
+      >
+        {{ i + 1 }}
+      </button>
+    
+      <!-- Botón "Siguiente" -->
+      <button
+        class="px-4 py-2 text-sm font-medium text-gray-500 bg-gray-100 border border-gray-300 rounded-md hover:bg-gray-200 hover:text-gray-700 transition-colors duration-300"
+        [disabled]="currentPage === totalPages"
+        [ngClass]="currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : ''"
+        (click)="nextPage()"
+      >
+      {{ 'BUTTON_NAVIGATION_TABLE.NEXT' | translate }}&raquo;
+      </button>
+    </div>
+</div>
+      
+<div *ngIf="print && !areAllChartsRendered"
+  class="fixed inset-0 z-50 bg-black bg-opacity-50 flex items-center justify-center">
+  <div class="rounded-lg p-8">
+    <div class="animate-spin rounded-full h-20 w-20 border-t-4 border-blue-500 border-solid"></div>
+  </div>
+</div>

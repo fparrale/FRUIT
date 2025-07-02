@@ -1,0 +1,117 @@
+<!-- Botón de apertura (visible solo en móviles) -->
+<button
+  class="fixed z-50 top-6 left-6 p-3 bg-[#0D92F4] text-white rounded-full shadow-md xl:hidden hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-300 transition-all"
+  [ngClass]="{ 'hidden': menuOpen }" (click)="toggleMenu($event)">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor"
+    class="w-6 h-6">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+  </svg>
+</button>
+
+<!-- Menú Lateral -->
+<aside class="bg-[#0D92F4] fixed inset-y-0 w-80 transform transition-transform duration-300 xl:translate-x-0 rounded-menu"
+  [ngClass]="{ '-translate-x-full': !menuOpen, 'translate-x-0': menuOpen }" #menuRef>
+  <!-- Encabezado -->
+  <div class="relative border-b border-white/20 flex justify-between items-center p-6">
+    <h6 class="text-[#FFD628] font-semibold text-lg leading-relaxed">
+      FRUIT
+      <!-- Fuzzy<br />NFRQuest -->
+    </h6>
+    <!-- Botón de cierre -->
+    <button
+      class="w-8 h-8 flex items-center justify-center text-white bg-transparent hover:bg-white/10 rounded-full xl:hidden"
+      (click)="toggleMenu($event)">
+      <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2.5" stroke="currentColor"
+        class="w-5 h-5">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+      </svg>
+    </button>
+  </div>
+
+  <!-- Menú de opciones -->
+  <ul class="mt-4 flex flex-col space-y-2 px-4">
+    <!-- Home -->
+    <li>
+      <a routerLink="/home" routerLinkActive="active-link"
+        class="flex items-center gap-3 p-3 rounded-lg transition-all hover:bg-gray-100"
+        (click)="onOptionClick()">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="2"
+          stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M3 9l9-7 9 7v11a4 4 0 01-4 4H7a4 4 0 01-4-4z" />
+        </svg>
+        <span class="text-base font-medium">{{'SIDEBAR.HOME' | translate }}</span>
+      </a>
+    </li>
+
+    <!-- Usuarios -->
+    <li *ngIf="canShowItemAdmin()">
+      <a routerLink="/users" routerLinkActive="active-link"
+        class="flex items-center gap-3 p-3 rounded-lg transition-all hover:bg-gray-100"
+        (click)="onOptionClick()">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="2"
+          stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M17 20h5v-2a4 4 0 00-3-3.87M9 20H4v-2a4 4 0 013-3.87M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14c-3.31 0-6 2.69-6 6v2h12v-2c0-3.31-2.69-6-6-6z" />
+        </svg>
+        <span class="text-base font-medium">{{'SIDEBAR.USERS' | translate }}</span>
+      </a>
+    </li>
+
+     <!-- Sala de Juegos -->
+     <li *ngIf="canShowItemTeacher()">
+      <a routerLink="/game-rooms" routerLinkActive="active-link"
+        class="flex items-center gap-3 p-3 rounded-lg transition-all hover:bg-gray-100"
+        (click)="onOptionClick()">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="2"
+          stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M15 10l4.553 2.276A1 1 0 0120 13.132V16m-4.553 2.276A1 1 0 0115 18.268V21m-6 0h6m0-2H7m0-4V7m6-2H7a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+        <span class="text-base font-medium">{{'SIDEBAR.GAME_ROOMS' | translate }}</span>
+      </a>
+    </li>
+
+
+    <!-- Historial -->
+    <li *ngIf="canShowItemStudent()">
+      <a routerLink="/game-history" routerLinkActive="active-link"
+        class="flex items-center gap-3 p-3 rounded-lg transition-all hover:bg-gray-100"
+        (click)="onOptionClick()">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="2"
+          stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M8 16l-4-4m0 0l4-4m-4 4h16" />
+        </svg>
+        <span class="text-base font-medium">{{'SIDEBAR.GAME_HISTORY' | translate }}</span>
+      </a>
+    </li>
+
+    <!-- Juego -->
+    <li *ngIf="canShowItemStudent()">
+      <a routerLink="/game" [queryParams]="{ mode: 'find'}" routerLinkActive="active-link"
+        class="flex items-center gap-3 p-3 rounded-lg transition-all hover:bg-gray-100"
+        (click)="onOptionClick()">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke-width="2"
+          stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round"
+            d="M15 10l4.553 2.276A1 1 0 0120 13.132V16m-4.553 2.276A1 1 0 0115 18.268V21m-6 0h6m0-2H7m0-4V7m6-2H7a2 2 0 00-2 2v10a2 2 0 002 2z" />
+        </svg>
+        <span class="text-base font-medium">{{'SIDEBAR.GAME' | translate }}</span>
+      </a>
+    </li>
+
+    <!-- Reporte -->
+    <li *ngIf="canShowItemTeacher()">
+      <a routerLink="/report" routerLinkActive="active-link"
+        class="flex items-center gap-3 p-3 rounded-lg transition-all hover:bg-gray-100"
+        (click)="onOptionClick()">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M19 2H8a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8l-5-6zM13 9V3.5L18.5 9H13z" fill="#FFFFF"/>
+          <text x="8" y="17" font-size="6" fill="white" font-family="Arial, sans-serif" font-weight="bold">PDF</text>
+        </svg>
+        <span class="text-base font-medium">{{'SIDEBAR.REPORT' | translate }}</span>
+      </a>
+    </li>
+
+   
+  </ul>
+</aside>

@@ -1,0 +1,142 @@
+<div class="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 flex justify-center items-center">
+    <div class="bg-white rounded-md p-6 shadow-lg w-full max-w-md">
+        <h6 class="text-xl text-center font-bold text-gray-800 mb-6">   {{ (editingValue ? 'GRAPHIC.EDIT-VALUE' : 'GRAPHIC.ADD-VALUE') | translate }}</h6>
+      
+        <div class="mb-4" *ngIf="!editingValue">
+            <label for="linguisticValueModal" class="block text-gray-700 font-medium mb-1">
+          {{ 'GRAPHIC.LINGUISTIC_VALUE' | translate }}
+            </label>
+            <select id="linguisticValueModal" [(ngModel)]="nameValue" required
+                class="w-full bg-gray-50 p-3 rounded-xl outline-none border shadow-sm text-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-[#0D92F4] focus:border-transparent">
+                <option *ngFor="let value of availableValues" [value]="value">{{ value }}</option>
+            </select>
+        </div>
+        <div class="mb-4" *ngIf="editingValue">
+            <label class="block text-gray-700 font-medium mb-1"> {{ 'GRAPHIC.LINGUISTIC_VALUE' | translate }}</label>
+            <div class="py-2 px-3 border shadow-sm text-gray-500 bg-gray-50 border p-3 rounded-xl">{{ editingValue.nameValue
+                }}</div>
+            <input type="hidden" [(ngModel)]="nameValue" [value]="editingValue.nameValue">
+        </div>
+
+        <div class="mb-4">
+            <label for="functionTypeModal" class="block text-gray-700 font-medium mb-1">
+                {{ 'GRAPHIC.BELONGING_FUNCTION' | translate }}
+            </label>
+            <select id="functionTypeModal" [(ngModel)]="functionType" (change)="onFunctionTypeChange()" required
+                class="w-full bg-gray-50 p-3 rounded-xl outline-none border shadow-sm text-gray-700 text-sm focus:outline-none focus:ring-2 focus:ring-[#0D92F4] focus:border-transparent">
+                <option value="trapezoidal">Trapezoidal</option>
+                <option value="triangular">Triangular</option>
+            </select>
+        </div>
+        <br>
+        <hr>
+        <br>
+        <div *ngIf="functionType === 'trapezoidal'" class="mb-4">
+            <div class="mb-2">
+                <label for="pointA_x_modal" class="block text-gray-700 font-medium mb-1"> {{ 'GRAPHIC.POINT_A' | translate }} (x, 0)</label>
+                <input type="number" id="pointA_x_modal" [(ngModel)]="pointA" required #pointAInput="ngModel"
+                    class="w-full bg-gray-50 p-3 rounded-xl outline-none border shadow-sm text-gray-700 text-sm"
+                        [class.border-red-500]="pointAInput.invalid && pointAInput.touched">
+                <div *ngIf="pointAInput.invalid && (pointAInput.dirty || pointAInput.touched)"
+                    class="text-red-500 text-sm mt-1">Debe ser mayor o igual a 0.</div>
+            </div>
+            <div class="mb-2">
+                <label for="pointB_x_modal" class="block text-gray-700 font-medium mb-1">{{ 'GRAPHIC.POINT_B' | translate }} (x, 1)</label>
+                <input type="number" id="pointB_x_modal" [(ngModel)]="pointB" required #pointBInput="ngModel"
+                    class="w-full bg-gray-50 p-3 rounded-xl outline-none border shadow-sm text-gray-700 text-sm"
+                        [class.border-red-500]="pointBInput.invalid && pointBInput.touched">
+                <div *ngIf="pointBInput.invalid && (pointBInput.dirty || pointBInput.touched)"
+                    class="text-red-500 text-sm mt-1">Debe ser mayor o igual a 0.</div>
+            </div>
+            <div class="mb-2">
+                <label for="pointC_x_modal" class="block text-gray-700 font-medium mb-1">{{ 'GRAPHIC.POINT_C' | translate }} (x, 1)</label>
+                <input type="number" id="pointC_x_modal" [(ngModel)]="pointC" required #pointCInput="ngModel"
+                    class="w-full bg-gray-50 p-3 rounded-xl outline-none border shadow-sm text-gray-700 text-sm"
+                        [class.border-red-500]="pointCInput.invalid && pointCInput.touched">
+                <div *ngIf="pointCInput.invalid && (pointCInput.dirty || pointCInput.touched)"
+                    class="text-red-500 text-sm mt-1">Debe ser mayor o igual a 0.</div>
+            </div>
+            <div class="mb-2">
+                <label for="pointD_x_modal" class="block text-gray-700 font-medium mb-1">{{ 'GRAPHIC.POINT_D' | translate }} (x, 0)</label>
+                <input type="number" id="pointD_x_modal" [(ngModel)]="pointD" required #pointDInput="ngModel"
+                    class="w-full bg-gray-50 p-3 rounded-xl outline-none border shadow-sm text-gray-700 text-sm"
+                        [class.border-red-500]="pointDInput.invalid && pointDInput.touched">
+                <div *ngIf="pointDInput.invalid && (pointDInput.dirty || pointDInput.touched)"
+                    class="text-red-500 text-sm mt-1">Debe ser mayor o igual a 0.</div>
+            </div>
+            <div *ngIf="hasValidationErrors() && functionType === 'trapezoidal'" class="text-red-500 text-sm mt-1">{{
+                getOrderErrorMessage() }}</div>
+        </div>
+
+        <div *ngIf="functionType === 'triangular'" class="mb-4">
+            <div class="mb-2">
+                <label for="pointA_t_x_modal" class="block text-gray-700 font-medium mb-1">{{ 'GRAPHIC.POINT_A' | translate }} (x, 0)</label>
+                <input type="number" id="pointA_t_x_modal" [(ngModel)]="pointA" required #pointAInput="ngModel"
+                    class="w-full bg-gray-50 p-3 rounded-xl outline-none border shadow-sm text-gray-700 text-sm"
+                        [class.border-red-500]="pointAInput.invalid && pointAInput.touched">
+                <div *ngIf="pointAInput.invalid && (pointAInput.dirty || pointAInput.touched)"
+                    class="text-red-500 text-sm mt-1">Debe ser mayor o igual a 0.</div>
+            </div>
+            <div class="mb-2">
+                <label for="pointB_t_x_modal" class="block text-gray-700 font-medium mb-1">{{ 'GRAPHIC.POINT_B' | translate }} (x, 1)</label>
+                <input type="number" id="pointB_t_x_modal" [(ngModel)]="pointB" required #pointBInput="ngModel"
+                    class="w-full bg-gray-50 p-3 rounded-xl outline-none border shadow-sm text-gray-700 text-sm"
+                        [class.border-red-500]="pointBInput.invalid && pointBInput.touched">
+                <div *ngIf="pointBInput.invalid && (pointBInput.dirty || pointBInput.touched)"
+                    class="text-red-500 text-sm mt-1">Debe ser mayor o igual a 0.</div>
+            </div>
+            <div class="mb-2">
+                <label for="pointC_t_x_modal" class="block text-gray-700 font-medium mb-1">{{ 'GRAPHIC.POINT_C' | translate }} (x, 0)</label>
+                <input type="number" id="pointC_t_x_modal" [(ngModel)]="pointC" required #pointCInput="ngModel"
+                    class="w-full bg-gray-50 p-3 rounded-xl outline-none border shadow-sm text-gray-700 text-sm"
+                        [class.border-red-500]="pointCInput.invalid && pointCInput.touched">
+                <div *ngIf="pointCInput.invalid && (pointCInput.dirty || pointCInput.touched)"
+                    class="text-red-500 text-sm mt-1">Debe ser mayor o igual a 0.</div>
+            </div>
+            <div *ngIf="hasValidationErrors() && functionType === 'triangular'" class="text-red-500 text-sm mt-1">{{
+                getOrderErrorMessage() }}</div>
+        </div>
+
+        <div *ngIf="functionType === 'sigmoide'" class="mb-4">
+            <div class="mb-2">
+                <label for="pointA_s_x_modal" class="block text-gray-700 font-medium mb-1">{{ 'GRAPHIC.POINT_A' | translate }} (x, ?)</label>
+                <input type="number" id="pointA_s_x_modal" [(ngModel)]="pointA" required
+                    class="w-full bg-gray-50 p-3 rounded-xl outline-none border shadow-sm text-gray-700 text-sm">
+                        
+            </div>
+            <div class="mb-2">
+                <label for="pointB_s_x_modal" class="block text-gray-700 font-medium mb-1">{{ 'GRAPHIC.POINT_B' | translate }} (x, ?)</label>
+                <input type="number" id="pointB_s_x_modal" [(ngModel)]="pointB" required
+                    class="w-full bg-gray-50 p-3 rounded-xl outline-none border shadow-sm text-gray-700 text-sm">
+            </div>
+            <div class="mb-2">
+                <label for="pointC_s_x_modal" class="block text-gray-700 font-medium mb-1">{{ 'GRAPHIC.POINT_C' | translate }} (x, ?)</label>
+                <input type="number" id="pointC_s_x_modal" [(ngModel)]="pointC" required
+                    class="w-full bg-gray-50 p-3 rounded-xl outline-none border shadow-sm text-gray-700 text-sm">
+            </div>
+            <div class="mb-2">
+                <label for="pointD_s_x_modal" class="block text-gray-700 font-medium mb-1">{{ 'GRAPHIC.POINT_D' | translate }} (x, ?)</label>
+                <input type="number" id="pointD_s_x_modal" [(ngModel)]="pointD" required
+                    class="w-full bg-gray-50 p-3 rounded-xl outline-none border shadow-sm text-gray-700 text-sm">
+            </div>
+            <div class="mb-2">
+                <label for="pointE_s_x_modal" class="block text-gray-700 font-medium mb-1">{{ 'GRAPHIC.POINT_E' | translate }} (x, ?)</label>
+                <input type="number" id="pointE_s_x_modal" [(ngModel)]="pointE" required
+                    class="w-full bg-gray-50 p-3 rounded-xl outline-none border shadow-sm text-gray-700 text-sm">
+            </div>
+            <div *ngIf="hasValidationErrors() && functionType === 'sigmoide'" class="text-red-500 text-sm mt-1">{{
+                getOrderErrorMessage() }}</div>
+        </div>
+
+        <div class="flex justify-end mt-4">
+            <button (click)="addValue()" [disabled]="!isValid()"
+                class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md">
+                {{ 'GRAPHIC.SAVE_CHANGES' | translate }}
+            </button>
+            <button (click)="closeModal()"
+                class="ml-2 bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg shadow-md">
+                {{ 'GRAPHIC.CANCEL' | translate }}
+            </button>
+        </div>
+    </div>
+</div>

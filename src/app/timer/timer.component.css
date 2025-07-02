@@ -1,0 +1,18 @@
+.timer {
+    font-size: 1.2em;
+    font-weight: bold;
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 4px;
+    background-color: #e8f5e9;
+  }
+  .timer-warning {
+    background-color: #ffebee;
+    color: #c62828;
+    animation: pulse 1s infinite;
+  }
+  @keyframes pulse {
+    0% { opacity: 1; }
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+  }

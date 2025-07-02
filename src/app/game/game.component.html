@@ -1,0 +1,42 @@
+<div class="py-10 flex justify-center items-center">
+    <!-- Tarjeta -->
+    <div class="bg-white p-8 rounded-2xl shadow-2xl max-w-md w-full">
+      <!-- Encabezado -->
+      <p class="text-center text-xl font-bold text-gray-700 mb-6">
+        🔑 {{ 'GAME_CODE.TITLE' | translate}}
+      </p>
+      <br>
+      <!-- Formulario -->
+      <div class="flex items-center space-x-3">
+        <!-- Campo de entrada -->
+        <input
+          [(ngModel)]="gameCode"
+          type="text"
+          placeholder="{{ 'GAME_CODE.PLACEHOLDER' | translate}}"
+          class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-600 focus:ring-2 focus:ring-blue-300 transition-all"
+        />
+  
+        <!-- Botón -->
+        <button
+          (click)="submitCode()"
+          class="flex items-center justify-center bg-[#0D92F4] text-white p-3 rounded-lg shadow-md hover:bg-blue-700 hover:shadow-lg focus:outline-none focus:ring-2 focus:ring-blue-400 transition-all"
+        >
+          <svg
+            class="w-5 h-5"
+            fill="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              d="M10 2a8 8 0 015.292 13.708l4.707 4.707-1.414 1.414-4.707-4.707A8 8 0 1110 2zm0 2a6 6 0 100 12 6 6 0 000-12z"
+            />
+          </svg>
+        </button>
+      </div>
+      <br>
+      <!-- Nota adicional -->
+      <p class="text-center text-sm text-gray-600 mt-4">
+        {{ 'GAME_CODE.DESCRIPTION' | translate}}
+      </p>
+    </div>
+  </div>
+  

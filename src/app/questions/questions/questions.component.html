@@ -1,0 +1,233 @@
+<div *ngIf="showInfoModal" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50 px-4">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-full max-w-md md:max-w-lg">
+        <h6 class="text-xl font-bold text-gray-800 mb-4">{{ modalTitle }}</h6>
+        <p class="text-gray-700">{{ modalContent }}</p>
+        <div class="flex justify-end mt-4">
+            <button class="bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md"
+                (click)="showInfoModal = false">
+                {{'QUIZ.BUTTON_CLOSE' | translate}}
+            </button>
+        </div>
+    </div>
+</div>
+
+
+<div id="instructionsAlert" class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
+    <div class="bg-white p-6 rounded-lg shadow-lg w-[600px] max-w-full">
+        <h4 class="text-2xl font-bold text-gray-800 mb-4">{{'GAME_INSTRUCTIONS.TITLE' | translate }}</h4>
+        <div class="text-gray-700 text-sm mb-4 max-h-96 overflow-y-auto">
+            <p><strong>{{'GAME_INSTRUCTIONS.OBJECTIVE_GAME.TITLE' | translate }}</strong></p>
+            <ul class="list-disc pl-4">
+                <li>{{'GAME_INSTRUCTIONS.OBJECTIVE_GAME.ITEM_1' | translate }}</li>
+                <li>{{'GAME_INSTRUCTIONS.OBJECTIVE_GAME.ITEM_2' | translate }}</li>
+            </ul>
+            <hr class="my-2">
+            <p><strong>{{'GAME_INSTRUCTIONS.HOW_PLAY.TITLE' | translate }}</strong></p>
+            <ul class="list-disc pl-4">
+                <li>{{'GAME_INSTRUCTIONS.HOW_PLAY.ITEM_1' | translate }}</li>
+                <ul class="list-disc pl-8">
+                    <li>{{'GAME_INSTRUCTIONS.HOW_PLAY.ITEM_2' | translate }}</li>
+                    <li>{{'GAME_INSTRUCTIONS.HOW_PLAY.ITEM_3' | translate }}</li>
+                </ul>
+                <li>{{'GAME_INSTRUCTIONS.HOW_PLAY.ITEM_4' | translate }}<strong>{{'GAME_INSTRUCTIONS.HOW_PLAY.NEXT' | translate }}</strong>.</li>
+            </ul>
+            <hr class="my-2">
+            <p><strong>{{'GAME_INSTRUCTIONS.SCORE.TITLE' | translate }}</strong></p>
+            <ul class="list-disc pl-4">
+                <li>{{'GAME_INSTRUCTIONS.SCORE.ITEM_1' | translate }}</li>
+                <li>{{'GAME_INSTRUCTIONS.SCORE.ITEM_2' | translate }}</li>
+            </ul>
+            <hr class="my-2">
+            <p><strong>{{'GAME_INSTRUCTIONS.TIPS.TITLE' | translate }}</strong></p>
+            <ul class="list-disc pl-4">
+                <li>{{'GAME_INSTRUCTIONS.TIPS.ITEM_1' | translate }}</li>
+                <li>{{'GAME_INSTRUCTIONS.TIPS.ITEM_2' | translate }}</li>
+                <li>{{'GAME_INSTRUCTIONS.TIPS.ITEM_3' | translate }}</li>
+                <li>{{'GAME_INSTRUCTIONS.TIPS.ITEM_4' | translate }}</li>
+                <li>{{'GAME_INSTRUCTIONS.TIPS.ITEM_5' | translate }}</li>
+            </ul>
+            <hr class="my-2">
+            <p><strong>{{'GAME_INSTRUCTIONS.COMPLETION_CONDITIONS.TITLE' | translate }}</strong></p>
+            <ul class="list-disc pl-4">
+                <li>{{'GAME_INSTRUCTIONS.COMPLETION_CONDITIONS.ITEM_1' | translate }}</li>
+                <li>{{'GAME_INSTRUCTIONS.COMPLETION_CONDITIONS.ITEM_2' | translate }}</li>
+            </ul>
+        </div>
+        <div class="flex justify-end">
+            <button class="bg-[#4A90E2] hover:bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md"
+                (click)="closeInstructions()">
+                {{'GAME_INSTRUCTIONS.CLOSE' | translate }}
+            </button>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="showConfirmationModal"
+    class="fixed inset-0 bg-gray-800 bg-opacity-50 flex items-center justify-center z-50">
+    <div class="bg-white p-6 rounded-xl shadow-xl w-[400px] sm:w-[500px] max-w-full overflow-y-auto">
+
+        <h5 class="text-2xl font-bold text-[#4A90E2] mb-4">{{'MODAL_CONFIRMATION.TITLE' | translate}}</h5>
+        <p class="text-gray-600 mb-6">{{'MODAL_CONFIRMATION.DESCRIPTION' | translate}}</p>
+
+        <div class="bg-gray-100 rounded-lg p-4 mb-6 border border-gray-300 max-h-96 overflow-y-auto space-y-4">
+        
+            <div *ngFor="let answer of completedAnswers; let i = index" class="bg-white p-4 rounded-lg shadow-md">
+                <h6 class="text-lg font-semibold text-[#4A90E2] mb-2">RNF: {{ i + 1 }}</h6>
+                <p class="text-gray-700"><strong>RNF:</strong> {{ answer.nfr }}</p>
+                <p class="text-gray-700"><strong>{{'MODAL_CONFIRMATION.LINGUISTIC_VARIABLE' | translate}}</strong> {{ answer.variable || 'No seleccionada'}}</p>
+                <p class="text-gray-700"><strong>{{'MODAL_CONFIRMATION.LINGUISTIC_VALUE' | translate}}</strong> {{ answer.value || 'No seleccionada' }}</p>
+                <p class="text-gray-700"><strong>{{'MODAL_CONFIRMATION.LINGUISTIC_RECOMMENDATION' | translate}}</strong> {{ answer.recomend || 'No seleccionada' }}</p>
+            </div>
+        </div>
+
+        <div class="flex justify-end space-x-4">
+            <button *ngIf="isButtonCloseConfirm" (click)="cancelSubmit()"
+                class="bg-gray-500 hover:bg-gray-600 text-white px-4 py-2 rounded-lg shadow-md transition">
+                {{'MODAL_CONFIRMATION.BUTTON_CANCEL' | translate}}
+            </button>
+            <button (click)="submitAnswers()"
+                class="bg-[#4A90E2] hover:bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md transition">
+                {{'MODAL_CONFIRMATION.BUTTON_SEND' | translate}}
+            </button>
+        </div>
+    </div>
+</div>
+
+<div *ngIf="currentQuestion" class="p-2">
+    <div class="flex justify-between items-center mb-6 border-b pb-4">
+        <div class="flex flex-col">
+            <h5 class="text-xl font-semibold text-[#4A90E2]">
+                RNF {{ currentQuestionIndex + 1 }} {{'QUIZ.OF' | translate}} {{ questions.length }}
+            </h5>
+            <h6 class="text-gray-700 text-sm mt-1">
+                {{ currentQuestion.nfr }}
+            </h6>
+        </div>
+    
+        <div class="text-end">
+            <p class="font-medium border-2 border-[#4A90E2] rounded px-2 py-1 text-[#4A90E2]">
+            {{'QUIZ.TIME' | translate}} <span class="font-medium">{{ formatTime(timer) }}</span>
+            </p>
+        </div>
+    </div>
+    
+
+    <div class="source-container p-4 bg-white rounded-lg shadow-md mb-6">
+        <h6 class="text-md font-semibold text-gray-800 mb-2">{{ 'QUIZ.AVAILABLE_ITEMS' | translate}}</h6>
+        <div cdkDropList #sourceList="cdkDropList" [cdkDropListData]="questionWords"
+            [cdkDropListConnectedTo]="[variableList, valueList]"
+            class="drop-zone bg-gray-50 border border-gray-300 rounded-lg p-4 flex flex-wrap gap-4"
+            (cdkDropListDropped)="drop($event)">
+            <div *ngFor="let item of questionWords"
+                class="drag-item p-2 bg-blue-100 rounded-lg shadow-sm cursor-pointer" cdkDrag
+                (cdkDragMoved)="onDragMove(item)">
+                {{item}}
+            </div>
+        </div>
+    </div>
+
+    <!-- Recomendaciones de Valores Linguisticos -->
+    <div class="source-container p-4 bg-white rounded-lg shadow-md mb-6">
+        <h6 class="text-md font-semibold text-gray-800 mb-2">{{ 'QUIZ.RECOMMENDATIONS_LINGUISTIC_VALUES' | translate}}</h6>
+        <div cdkDropList #sourceListOtherRecommendedValues="cdkDropList" [cdkDropListData]="otherRecommendedValues"
+            [cdkDropListConnectedTo]="[variableList, valueList, recomendList]"
+            class="drop-zone bg-gray-50 border border-gray-300 rounded-lg p-4 flex flex-wrap gap-4"
+            (cdkDropListDropped)="drop($event)">
+            <div *ngFor="let item of otherRecommendedValues"
+                class="drag-item p-2 bg-blue-100 rounded-lg shadow-sm cursor-pointer" cdkDrag
+                (cdkDragMoved)="onDragMove(item)">
+                {{item}}
+            </div>
+        </div>
+    </div>
+
+    <!-- Contenedores de arrastre -->
+    <div class="drag-drop-container grid grid-cols-1 md:grid-cols-3 gap-6">
+        <!-- Variable -->
+        <div class="target-box p-4 bg-white rounded-lg shadow-md">
+            <div class="flex items-start justify-start space-x-2">
+                <!-- Texto -->
+                <h6 class="text-md font-semibold text-gray-800">{{ 'QUIZ.LINGUISTIC_VARIABLE' | translate}}</h6>
+                <!-- Botón del Icono -->
+                <button (click)="openInfoModal('variable')" class="rounded-full hover:bg-blue-100 focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-gray-500 hover:text-blue-600"
+                        fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M13 16h-1v-4h-1m1-4h.01M12 2a10 10 0 100 20 10 10 0 000-20z" />
+                    </svg>
+                </button>
+            </div>
+
+
+            <div cdkDropList #variableList="cdkDropList" [cdkDropListData]="variable"
+                [cdkDropListConnectedTo]="[sourceList, valueList, recomendList, sourceListOtherRecommendedValues]"
+                class="drop-zone bg-gray-50 border border-gray-300 rounded-lg p-4" (cdkDropListDropped)="drop($event)">
+                <div *ngFor="let item of variable"
+                    class="drag-item p-2 bg-blue-100 rounded-lg shadow-sm my-2 cursor-pointer" cdkDrag
+                    (cdkDragMoved)="onDragMove(item)">
+                    {{item}}
+                </div>
+            </div>
+        </div>
+
+        <!-- Valor -->
+        <div class="target-box p-4 bg-white rounded-lg shadow-md">
+            <div class="flex items-start justify-start space-x-2">
+                <h6 class="text-md font-semibold text-gray-800 mb-2">{{ 'QUIZ.LINGUISTIC_VALUE' | translate}}</h6>
+                <button (click)="openInfoModal('value')" class="rounded-full hover:bg-blue-100 focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-gray-500 hover:text-blue-600"
+                        fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M13 16h-1v-4h-1m1-4h.01M12 2a10 10 0 100 20 10 10 0 000-20z" />
+                    </svg>
+                </button>
+            </div>
+
+            <div cdkDropList #valueList="cdkDropList" [cdkDropListData]="value"
+                [cdkDropListConnectedTo]="[sourceList, variableList, recomendList, sourceListOtherRecommendedValues]"
+                class="drop-zone bg-gray-50 border border-gray-300 rounded-lg p-4" (cdkDropListDropped)="drop($event)">
+                <div *ngFor="let item of value"
+                    class="drag-item p-2 bg-blue-100 rounded-lg shadow-sm my-2 cursor-pointer" cdkDrag
+                    (cdkDragMoved)="onDragMove(item)">
+                    {{item}}
+                </div>
+            </div>
+        </div>
+
+        <!-- Otros Valores Linguisticos -->
+        <div class="target-box p-4 bg-white rounded-lg shadow-md">
+            <div class="flex items-start justify-start space-x-2">
+                <h6 class="text-md font-semibold text-gray-800 mb-2">{{ 'QUIZ.OTHER_LINGUISTIC_VALUES' | translate}}</h6>
+                <button (click)="openInfoModal('recomend')" class="rounded-full hover:bg-blue-100 focus:outline-none">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-7 w-7 text-gray-500 hover:text-blue-600"
+                        fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                        <path stroke-linecap="round" stroke-linejoin="round"
+                            d="M13 16h-1v-4h-1m1-4h.01M12 2a10 10 0 100 20 10 10 0 000-20z" />
+                    </svg>
+                </button>
+            </div>
+            <div cdkDropList #recomendList="cdkDropList" [cdkDropListData]="recomend"
+            [cdkDropListConnectedTo]="[sourceList, variableList, valueList, recomendList, sourceListOtherRecommendedValues]"
+            class="drop-zone bg-gray-50 border border-gray-300 rounded-lg p-4" (cdkDropListDropped)="drop($event)">
+            <div *ngFor="let item of recomend"
+                class="drag-item p-2 bg-blue-100 rounded-lg shadow-sm my-2 cursor-pointer" cdkDrag
+                (cdkDragMoved)="onDragMove(item)">
+                {{item}}
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- Botones de navegación -->
+    <div class="navigation-buttons flex justify-center items-center mt-6 space-x-4">
+        <button (click)="previousQuestion()" *ngIf="currentQuestionIndex > 0"
+            class="bg-[#4A90E2] text-white px-4 py-2 rounded-lg shadow-md disabled:opacity-50">
+            {{'BUTTON_NAVIGATION_TABLE.PREVIOUS' | translate}}
+        </button>
+        <button (click)="nextQuestion()" [disabled]="!canProceed()"
+            class="bg-[#4A90E2] text-white px-4 py-2 rounded-lg shadow-md disabled:opacity-50">
+            {{ currentQuestionIndex === questions.length - 1 ? ('QUIZ.BUTTON_FINISH' | translate) : ('BUTTON_NAVIGATION_TABLE.NEXT' | translate)}}
+        </button>
+    </div>
+
+</div>

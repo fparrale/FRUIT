@@ -1,0 +1,15 @@
+.search-sort-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  
+  .search-box {
+    flex: 0 0 300px;
+  }
+  
+  .sort-buttons {
+    display: flex;
+    gap: 10px;
+  }
