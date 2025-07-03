@@ -1,0 +1,267 @@
+{
+  "LOGIN": {
+    "GAME": "¡vamos a jugar!",
+    "TITLE": "Iniciar sesión",
+    "EMAIL": "Correo electrónico",
+    "PASSWORD": "Contraseña",
+    "BUTTON": "Iniciar sesión",
+    "FORGOT_PASSWORD": "¿Olvidaste tu contraseña?",
+    "NO_ACCOUNT": "¿No tienes una cuenta?",
+    "SIGN_UP": "Regístrate",
+    "SELECT_LANGUAGE": "Seleccionar Idioma",
+    "ENGLISH": "Inglés",
+    "SPANISH": "Español",
+    "ERROR": {
+      "INVALID_CREDENTIALS": "Credenciales inválidas",
+      "EMAIL_REQUIRED": "El correo electrónico es obligatorio",
+      "EMAIL_INVALID": "El correo electrónico es inválido",
+      "PASSWORD_REQUIRED": "La contraseña es obligatoria",
+      "PASSWORD_MIN_LENGTH": "La contraseña debe tener al menos 6 caracteres"
+    }
+  },
+  "RESETPASSWORD": {
+    "GAME": "¡vamos a jugar!",
+    "TITLE": "Restablecer Contraseña",
+    "EMAIL": "Correo Electrónico",
+    "BUTTON": "Enviar",
+    "ERROR": {
+      "EMAIL_REQUIRED": "El correo electrónico es obligatorio.",
+      "EMAIL_INVALID": "Por favor, introduce un correo electrónico válido.",
+      "CODE_REQUIRED": "El código es obligatorio.",
+      "CODE_MUST": "El código debe tener 6 dígitos.",
+      "PASSWORD_REQUIRED": "La contraseña es obligatoria.",
+      "PASSWORD_MIN_LENGTH": "La contraseña debe tener al menos 8 caracteres.",
+      "PASSWORD_MATCH": "Las contraseñas no coinciden."
+    },
+    "CLICK_HERE": "Haz clic aquí",
+    "CODE": "Código OTP",
+    "PASSWORD": "Contraseña",
+    "CONFIRM_PASSWORD": "Confirmar Contraseña",
+    "BUTTON_RESET_PASSWORD": "Restablecer Contraseña",
+    "BACK_LOGIN": "Volver al inicio de sesión"
+  },
+  "REGISTER": {
+    "GAME": "¡vamos a jugar!",
+    "TITLE": "Registro",
+    "NAMES": "Nombres",
+    "LAST_NAME": "Apellidos",
+    "EMAIL": "Correo Electrónico",
+    "PASSWORD": "Contraseña",
+    "ROL": "Selecciona un rol",
+    "ERROR": {
+      "NAME_REQUIRED": "Los nombres son obligatorios.",
+      "LAST_NAME_REQUIRED": "Los apellidos son obligatorios.",
+      "EMAIL_REQUIRED": "El correo electrónico es obligatorio.",
+      "EMAIL_INVALID": "Por favor, introduce un correo electrónico válido.",
+      "PASSWORD_REQUIRED": "La contraseña es obligatoria.",
+      "ROL_SELECT": "Debes seleccionar un rol."
+    },
+    "BUTTTON": "Registrar",
+    "HAVE_ACCOUNT": "¿Ya tienes una cuenta?",
+    "LOGIN": "Inicia sesión aquí"
+  },
+  "NAVBAR": {
+    "HELLO": "Hola",
+    "LOGOUT" : "Cerrar Sesión",
+    "ENGLISH": "Inglés",
+    "SPANISH": "Español",
+    "CHANGE_LANGUAGE": "Cambiar Idioma"
+  },
+  "SIDEBAR": {
+    "HOME": "Inicio",
+    "USERS": "Usuarios",
+    "GAME_ROOMS": "Salas de Juego",
+    "GAME_HISTORY": "Historial de Juegos",
+    "GAME": "Juego",
+    "REPORT": "Reporte",
+    "LOGOUT": "Cerrar Sesión"
+  },
+  "HOME": {
+    "IMPORT_QUESTION": "Importar Preguntas",
+    "DESCRIPTION_IMPORT_QUESTION": "Sube o importa tus conjuntos de preguntas.",
+    "CREATE_GAME_ROOM": "Crear Sala de Juego",
+    "DESCRIPTION_GAME_ROOM": "Crea una nueva sala de juego",
+    "FIND_GAME_ROOM": "Buscar Sala de Juego",
+    "DESCRIPTION_FIND_GAME_ROOM": "Únete a una sesión de juego existente",
+    "FIND_PRACTICE_GAME_ROOM": "Buscar Sala de Juego de Práctica",
+    "DESCRIPTION_FIND_PRACTICE_GAME_ROOM": "Únete a una sesión de práctica existente"
+  },
+  "TABLE": {
+    "CODE": "CODIGO",
+    "SCORE": "PUNTAJE",
+    "FULL_NAME": "NOMBRES COMPLETOS",
+    "DURATION": "DURACION",
+    "ANSWERS": "Respuestas",
+    "CREATION_DATE": "FECHA DE CREACIÓN",
+    "EXPIRATION_DATE": "FECHA DE EXPIRACIÓN",
+    "STATUS": "ESTADO",
+    "ACTIONS": "ACCIONES",
+    "LINGUISTIC_VARIABLE": "Variable Lingüística",
+    "LINGUISTIC_VALUE": "Valor Lingüístico",
+    "LINGUISTIC_RECOMMENDATION": "Recomendación",
+    "OTHER_LINGUISTIC_VALUES": "Otros Valores Lingüísticos",
+    "VALUES": "Valores",
+    "VIEW_ANSWERS": "Ver Respuestas",
+    "CONTINUE_GRAPHIC": "Continuar gráfica"
+  },
+  "BUTTON_NAVIGATION_TABLE": {
+    "NEXT": "Siguiente",
+    "PREVIOUS": "Anterior"
+  },
+  "GAME_CODE": {
+    "TITLE": "Ingrese el código para iniciar",
+    "PLACEHOLDER": "Escriba su código",
+    "DESCRIPTION": "Este código es único para su juego. ¡Asegúrese de ingresar correctamente!"
+  },
+  "GAME_INSTRUCTIONS": {
+    "TITLE": "Instrucciones del Juego",
+    "OBJECTIVE_GAME": {
+      "TITLE": "Objetivo del Juego:",
+      "ITEM_1": "Construye frases o coloca palabras correctas a partir de los elementos disponibles para las variables, valores y recomendaciones lingüísticas.",
+      "ITEM_2": "Cada categoría debe completarse correctamente para avanzar al siguiente RNF."
+    },
+    "HOW_PLAY": {
+      "TITLE": "Cómo Jugar:",
+      "ITEM_1": "Arrastra los elementos disponibles en la sección *elementos disponibles* o *Recomendaciones de Valores Lingüísticos* para formar palabras o frases correctas:",
+      "ITEM_2": "En la caja de Variable Lingüística y Valor Linguistico se completa con la sección *elementos disponibles*.",
+      "ITEM_3": "En la caja de otros valores linguisticos se completa con la sección de *Recomendaciones de Valores Linguisticos*.",
+      "ITEM_4": "Avanza al siguiente RNF con el botón ",
+      "NEXT": "Siguiente"
+    },
+    "SCORE": {
+      "TITLE": "Puntaje:",
+      "ITEM_1": "El puntaje de cada categoria puede variar segun el docente.",
+      "ITEM_2": "Tu puntaje total se calcula en funcion de las respuestas correctas enviadas."
+    },
+    "TIPS": {
+      "TITLE": "Consejos:",
+      "ITEM_1": "Lee la descripción del RNF antes de empezar.",
+      "ITEM_2": "Piensa en el orden lógico de las palabras antes de colocarlas en las cajas",
+      "ITEM_3": "Si no estás seguro, puedes reorganizar las palabras arrastrándolas nuevamente.",
+      "ITEM_4": "Revisa tus respuestas antes de enviarlas.",
+      "ITEM_5": "Evita salir o refrescar la pantalla ya que puedes perder tu progreso."
+    },
+    "COMPLETION_CONDITIONS": {
+      "TITLE": "Condiciones de Finalización:",
+      "ITEM_1": "El juego termina cuando completes todos los (RNFs) correctamente.",
+      "ITEM_2": "Tu puntaje final se mostrará al finalizar el juego."
+    },
+    "CLOSE": "¡Entendido!"
+  },
+  "QUIZ": {
+    "OF": "de",
+    "TIME": "Tiempo: ",
+    "AVAILABLE_ITEMS": "Elementos disponibles",
+    "RECOMMENDATIONS_LINGUISTIC_VALUES": "Recomendaciones de Valores Linguisticos",
+    "LINGUISTIC_VARIABLE": "Variable Lingüística",
+    "LINGUISTIC_VALUE": "Valor Linguistico",
+    "OTHER_LINGUISTIC_VALUES": "Otros Valores Linguisticos",
+    "BUTTON_FINISH": "Finalizar",
+    "BUTTON_CLOSE": "Close"
+  },
+  "MODAL_CONFIRMATION": {
+    "TITLE": "Confirmación",
+    "DESCRIPTION": "Por favor, revisa tus respuestas antes de enviarlas:",
+    "LINGUISTIC_VARIABLE": "Variable Lingüística: ",
+    "LINGUISTIC_VALUE": "Valor Lingüístico: ",
+    "LINGUISTIC_RECOMMENDATION": "Recomendación Lingüística: ",
+    "BUTTON_SEND": "Enviar",
+    "BUTTON_CANCEL": "Cancelar"
+  },
+  "RESULTS": {
+    "RESULTS": "Resultados",
+    "TITLE": "Resultados del juego",
+    "TOTAL_SCORE": "Puntuación total: ",
+    "DETAILS": "Detalles: ",
+    "LINGUISTIC_VARIABLE": "Variable lingüística: ",
+    "LINGUISTIC_VALUE": "Valor lingüístico: ",
+    "LINGUISTIC_RECOMMENDATION": "Recomendación lingüística: ",
+    "YOUR_ANSWER": "Tu respuesta: ",
+    "FEEDBACK": "Retroalimentación: ",
+    "BUTTON_CREATE_GRAPH" : "Crear conjunto difuso",
+    "BUTTON_EDIT_GRAPH" : "Editar conjunto difuso",
+    "BUTTON_FINISH" : "Finalizar",
+    "NOT_GRAPHED": "No graficado"
+  },
+  "GRAPHIC": {
+   "LINGUISTIC_VARIABLE": "Variable Lingüística",
+   "LINGUISTIC_VALUES": "Valores Lingüísticos",
+   "LINGUISTIC_VALUE": "Valor Lingüístico",
+   "BELONGING_FUNCTION" : "Función de Pertenencia",
+   "POINT_A" : "Punto A",
+   "POINT_B" : "Punto B",
+   "POINT_C" : "Punto C",
+   "POINT_D" : "Punto D",
+   "POINT_E" : "Punto E",
+   "ADD-VALUE" : "Agregar Valor",
+   "EDIT-VALUE" : "Editar Valor",
+   "CUSTOM_SCALE": "Personalizar Escala",
+   "SAVE_CHANGES" : "Guardar Cambios",
+   "BACK" : "Volver",
+   "LIMIT_X": "Límite eje X",
+   "JUMP_Y": "Salto Y",
+   "APLICATION": "Aplicar",
+   "CANCEL": "Cancelar",
+   "NOT_LINGUISTIC_VARIABLE": " No se han agregado valores lingüísticos."
+  },
+  "GAME_ROOM": {
+    "BUTTON_CREATE": "Crear sala",
+    "UPLOAD_QUESTION": "Subir pregunta: ",
+    "EXCEL_FILE": "Descargar ejemplo de Excel",
+    "ASSET": "Activo",
+    "IDLE": "Inactivo",
+    "ELIMINATED": "Eliminar",
+    "SEARCH_PLACEHOLDER": "Buscar por código...",
+    "SORT_BY_CODE": "Ordenar por Código",
+    "SORT_BY_DATE": "Ordenar por Fecha de Creación",
+    "SORT_BY_EXPIRATION": "Ordenar por Fecha de Expiración",	
+    "SEARCH_PLACEHOLDER_RNF": "Buscar por rnf...",
+    "SORT_BY_RNF": "Ordenar por Rnf",
+    "PLAYER_HISTORY": "Historial de Jugadores"
+  },
+  "CREATE_GAME_ROOM": {
+    "MODAL_EDIT_CREATE_RNF": {
+      "ADD": "Agregar",
+      "UPDATE": "Actualizar",
+      "BUTTON_EDIT": "Actualizar",
+      "BUTTON_CLOSE": "Cerrar",
+      "BUTTON_EDIT_MODAL": "Editar",
+      "BUTTON_ADD": "Agregar",
+      "BUTTON_ELIMINATE": "Eliminar",
+      "BUTTON_CREATE_ROOM": "Crear Sala",
+      "BUTTON_ADD_RNF": "Agregar RNF",
+      "COMPLETATION_DATE": "Fecha de Finalización: ",
+      "NFR": "Requisito no funcional",
+      "LINGUISTIC_VARIABLE": "Variable Lingüística",
+      "LINGUISTIC_VALUE": "Valor Lingüístico",
+      "LINGUISTIC_RECOMMENDATION": "Recomendación",
+      "OTHER_LINGUISTIC_VALUES": "Otros Valores Lingüísticos",
+      "WEIGHT": "Peso",
+      "FEEDBACK": "Retroalimentación",
+      "ERROR": {
+        "NFR_REQUIRED": "El requisito no funcional es obligatorio.",
+        "VARIABLE_REQUIRED": "La Variable Lingüística es obligatoria.",
+        "FEEDBACK_REQUIRED": "La retroalimentación es obligatoria.",
+        "WEIGHT_REQUIRED": "El peso es obligatorio.",
+        "LINGUISTIC_VALUE_REQUIRED": "El Valor Lingüístico es obligatorio.",
+        "RECOMMENDATION_REQUIRED": "La recomendación es obligatoria.",
+        "OTHER_LINGUISTIC_VALUES_REQUIRED": "Los otros valores lingüísticos son obligatorios."
+      }
+    }
+  },
+  "ALERT": {
+    "SUCCESS": "Mensaje de éxito",
+    "ERROR": "Mensaje de error",
+    "BUTTON_CLOSE": "Cerrar",
+    "PRINT": "Imprimir"
+  },
+  "REPORT": {
+    "GENERATE_REPORT": "Generar reporte"
+  },
+  "EDIT_GAME_ROOM":{
+    "DATE_EXPIRATION_BUTTON": "Cambiar fecha de expiración"
+  },
+  "QUESTION":{
+    "NFR": "RNF"
+  }
+}
