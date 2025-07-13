@@ -105,7 +105,11 @@ export default class LoginComponent implements OnInit{
     this.isLanguageMenuOpen = false;
   }
 
-
+  changeLanguage(lang: string): void {
+    this.translate.use(lang); // Cambia el idioma
+    this.storageService.setItem(lang); // Guarda el idioma en el localStorage
+    this.isLanguageMenuOpen = false; // Cierra el menú
+  }
 
   navigationToPage(route: string): void {
     this.router.navigate([route]);

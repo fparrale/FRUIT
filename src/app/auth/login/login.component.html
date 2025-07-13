@@ -20,7 +20,46 @@
   <div class="flex justify-center items-center self-center z-10 sm:order-2 order-1">
     <div class="p-8 sm:p-10 bg-white mx-auto rounded-2xl w-full sm:w-96 max-w-lg shadow-lg">
       <div class="mb-6">
-       
+        <div class="relative flex justify-end">
+          <!-- Botón del icono -->
+          <button id="language-menu-button"
+            (click)="toggleLanguageMenu()"
+            class="p-2 bg-gray-100 rounded-full hover:bg-gray-200 focus:outline-none focus:ring focus:ring-gray-300"
+          >
+            <!-- <svg id="language-menu-svg" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" class="w-6 h-6 text-gray-600">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 5.75h16.5m-16.5 6.5h16.5m-16.5 6.5h16.5" />
+            </svg> -->
+            <svg id="language-menu-svg" viewBox="0 0 24 24" stroke-width="2" stroke="black" fill="none" stroke-linecap="round" stroke-linejoin="round" class="w-6 h-6 text-gray-600">  
+              <path id="language-menu-path" stroke="none" d="M0 0h24v24H0z"/>  
+              <path id="language-menu-path" d="M5 7h7m-2 -2v2a5 8 0 0 1 -5 8m1 -4a7 4 0 0 0 6.7 4" />  
+              <path id="language-menu-path" d="M11 19l4 -9l4 9m-.9 -2h-6.2" />
+            </svg>
+          </button>
+    
+          <div id="language-menu"
+            *ngIf="isLanguageMenuOpen"
+            class="absolute right-7 mt-2 w-40 bg-white border border-gray-200 rounded-md shadow-lg z-10"
+          >
+            <ul class="py-1">
+              <li>
+                <button
+                  (click)="changeLanguage('en')"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
+                >
+                  {{ 'LOGIN.ENGLISH' | translate }}
+                </button>
+              </li>
+              <li>
+                <button
+                  (click)="changeLanguage('es')"
+                  class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 w-full text-left"
+                >
+                  {{ 'LOGIN.SPANISH' | translate }}
+                </button>
+              </li>
+            </ul>
+          </div>
+        </div>
         <h3 class="font-semibold text-xl text-center text-[#0D92F4]">{{ 'LOGIN.TITLE' | translate }}</h3>
       </div>
       <!-- <div class="mb-4">
