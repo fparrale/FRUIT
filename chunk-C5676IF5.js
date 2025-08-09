@@ -1,1 +1,0 @@
-import{_ as o,m as t}from"./chunk-NJXLY5TY.js";var a=class e{loadingSubject=new t(!1);loading$=this.loadingSubject.asObservable();showLoading(){this.loadingSubject.next(!0)}hideLoading(){this.loadingSubject.next(!1)}static \u0275fac=function(i){return new(i||e)};static \u0275prov=o({token:e,factory:e.\u0275fac,providedIn:"root"})};export{a};
