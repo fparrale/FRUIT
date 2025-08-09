@@ -2,11 +2,12 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { NgIf, CommonModule } from '@angular/common';
 import { TranslateModule } from '@ngx-translate/core';
+import { TooltipInfoComponent } from "../../shared/tooltip-info/tooltip-info.component";
 
 @Component({
   selector: 'app-linguistic-value',
   standalone: true,
-  imports: [FormsModule, NgIf, CommonModule, TranslateModule], // Agrega CommonModule a los imports
+  imports: [FormsModule, NgIf, CommonModule, TranslateModule, TooltipInfoComponent], // Agrega CommonModule a los imports
   templateUrl: './linguistic-value.component.html',
   styleUrl: './linguistic-value.component.css'
 })

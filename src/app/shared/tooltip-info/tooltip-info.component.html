@@ -1,0 +1,37 @@
+<div class="relative flex-shrink-0">
+  <div class="inline-block relative group cursor-pointer pointer-events-auto">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      class="w-5 h-5 text-blue-500"
+      fill="none"
+      viewBox="0 0 24 24"
+      stroke="currentColor"
+      >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M13 16h-1v-4h-1m1-4h.01M12 2a10 10 0 100 20 10 10 0 000-20z"
+      />
+    </svg>
+
+    <div
+      class="absolute left-full top-1/2 -translate-y-1/2 ml-3
+             w-96 p-4 bg-white/95 backdrop-blur border rounded-lg shadow-lg
+             opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-105
+             transition-all duration-200 z-50 pointer-events-none"
+      [ngClass]="width"
+    >
+      <img
+        *ngIf="imageSrc"
+        [src]="imageSrc"
+        alt="Imagen Tooltip"
+        class="w-full h-auto rounded mb-3"
+      />
+
+      <p class="text-base text-center text-gray-700 leading-snug">
+        {{ text }}
+      </p>
+    </div>
+  </div>
+</div>
