@@ -199,7 +199,7 @@
    "SAVE_CHANGES" : "Guardar Cambios",
    "BACK" : "Volver",
    "LIMIT_X": "Límite eje X",
-   "JUMP_Y": "Salto Y",
+   "JUMP_Y": "Salto eje Y",
    "APLICATION": "Aplicar",
    "CANCEL": "Cancelar",
    "NOT_LINGUISTIC_VARIABLE": " No se han agregado valores lingüísticos."
