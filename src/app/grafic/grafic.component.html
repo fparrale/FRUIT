@@ -9,7 +9,8 @@
         </div>        
         
         <button [disabled]="!areNewValuesAvailable()" (click)="openAddValueModal()"
-            class="ml-4 min-w-[150px] bg-blue-500 hover:bg-blue-600 text-white px-4 py-2 rounded-lg shadow-md">
+            class="ml-4 min-w-[150px] text-white px-4 py-2 rounded-lg" 
+            [ngClass]="!areNewValuesAvailable() ? 'bg-gray-400 text-gray-600 cursor-not-allowed' : 'shadow-md bg-blue-500 hover:bg-blue-600' ">
             {{'GRAPHIC.ADD-VALUE' | translate}}
         </button>
     </div>
