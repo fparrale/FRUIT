@@ -52,28 +52,32 @@ export class LinguisticValueComponent implements OnInit {
   }
 
   isValid(): boolean {
-    if (!this.nameValue) {
-      return false;
-    }
+    if (!this.nameValue) return false;
 
     if (this.functionType === 'trapezoidal') {
-      return (
-        this.pointA !== null && this.pointA >= 0 &&
-        this.pointB !== null && this.pointB >= 0 &&
-        this.pointC !== null && this.pointC >= 0 &&
-        this.pointD !== null && this.pointD >= 0 &&
-        this.pointA < this.pointB &&
-        this.pointB < this.pointC &&
-        this.pointC < this.pointD
-      );
+      if (this.pointA == null || this.pointB == null || this.pointC == null || this.pointD == null) return false;
+      const a = this.pointA, b = this.pointB, c = this.pointC, d = this.pointD;
+
+      const nonNeg = a >= 0 && b >= 0 && c >= 0 && d >= 0;
+      const monotone = a <= b && b <= c && c <= d;
+      const validShape = (a < d) && (a < b || b < c || c < d);
+
+      // Reglas adicionales
+      const noSquare = !(a === b && c === d); // Evita forma cuadrada
+      const noFlatStart = !(a === b && b === c); // Evita inicio plano
+      const noFlatEnd = !(b === c && c === d); // Evita final plano
+      const noTriangleLike = b !== c; // Evita que B = C (forma triangular)
+
+      return nonNeg && monotone && validShape && noSquare && noFlatStart && noFlatEnd && noTriangleLike;
+
     } else if (this.functionType === 'triangular') {
-      return (
-        this.pointA !== null && this.pointA >= 0 &&
-        this.pointB !== null && this.pointB >= 0 &&
-        this.pointC !== null && this.pointC >= 0 &&
-        this.pointA < this.pointB &&
-        this.pointB < this.pointC
-      );
+      if (this.pointA == null || this.pointB == null || this.pointC == null) return false;
+      const a = this.pointA, b = this.pointB, c = this.pointC;
+      const nonNeg = a >= 0 && b >= 0 && c >= 0;
+      const monotone = a <= b && b <= c;
+      const validShape = (a < c) && (a < b || b < c);
+      return nonNeg && monotone && validShape;
+
     } else if (this.functionType === 'sigmoide') {
       return (
         this.pointA !== null && this.pointA >= 0 &&
@@ -92,20 +96,26 @@ export class LinguisticValueComponent implements OnInit {
 
   isValidOrder(): boolean {
     if (this.functionType === 'trapezoidal') {
-      return (
-        this.pointA !== null && this.pointB !== null &&
-        this.pointC !== null && this.pointD !== null &&
-        this.pointA < this.pointB &&
-        this.pointB < this.pointC &&
-        this.pointC < this.pointD
-      );
+      if (this.pointA == null || this.pointB == null || this.pointC == null || this.pointD == null) return false;
+      const a = this.pointA, b = this.pointB, c = this.pointC, d = this.pointD;
+
+      const monotone = a <= b && b <= c && c <= d;
+      const validShape = (a < d) && (a < b || b < c || c < d);
+
+      const noSquare = !(a === b && c === d);
+      const noFlatStart = !(a === b && b === c);
+      const noFlatEnd = !(b === c && c === d);
+      const noTriangleLike = b !== c;
+
+      return monotone && validShape && noSquare && noFlatStart && noFlatEnd && noTriangleLike;
+
     } else if (this.functionType === 'triangular') {
-      return (
-        this.pointA !== null && this.pointB !== null &&
-        this.pointC !== null &&
-        this.pointA < this.pointB &&
-        this.pointB < this.pointC
-      );
+      if (this.pointA == null || this.pointB == null || this.pointC == null) return false;
+      const a = this.pointA, b = this.pointB, c = this.pointC;
+      const monotone = a <= b && b <= c;
+      const validShape = (a < c) && (a < b || b < c);
+      return monotone && validShape;
+
     } else if (this.functionType === 'sigmoide') {
       return (
         this.pointA !== null && this.pointB !== null &&
@@ -122,14 +132,14 @@ export class LinguisticValueComponent implements OnInit {
 
   getOrderErrorMessage(): string {
     if (this.functionType === 'trapezoidal') {
-      return 'Los puntos deben estar en orden: A < B < C < D';
+      return 'Orden requerido: A ≤ B ≤ C ≤ D. No se permite: A=B y C=D, A=B=C, B=C=D ni B=C.';
     } else if (this.functionType === 'triangular') {
-      return 'Los puntos deben estar en orden: A < B < C';
+      return 'Orden requerido: A ≤ B ≤ C. No se permite A=B=C.';
     } else if (this.functionType === 'sigmoide') {
-      return 'Los puntos deben estar en orden: A < B < C < D < E';
+      return 'Orden requerido: A < B < C < D < E.';
     }
     return '';
-  }
+  }  
 
   hasValidationErrors(): boolean {
     if (!this.isValidOrder() && this.allPointsEntered()) {

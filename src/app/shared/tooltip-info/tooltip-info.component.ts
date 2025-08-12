@@ -12,4 +12,10 @@ export class TooltipInfoComponent {
   @Input() imageAlt: string = '';
   @Input() text: string = '';
   @Input() width: string = 'w-96';
+
+  
+  getImageAlt() : string {
+    return this.imageAlt;
+  }
+
 }

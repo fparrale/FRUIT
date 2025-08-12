@@ -15,21 +15,13 @@
       />
     </svg>
 
-    <div
-      class="absolute left-full top-1/2 -translate-y-1/2 ml-3
+    <div class="absolute right-full top-1/2 -translate-y-1/2 mr-3
              w-96 p-4 bg-white/95 backdrop-blur border rounded-lg shadow-lg
              opacity-0 scale-95 group-hover:opacity-100 group-hover:scale-105
-             transition-all duration-200 z-50 pointer-events-none"
-      [ngClass]="width"
-    >
-      <img
-        *ngIf="imageSrc"
-        [src]="imageSrc"
-        alt="Imagen Tooltip"
-        class="w-full h-auto rounded mb-3"
-      />
-
-      <p class="text-base text-center text-gray-700 leading-snug">
+             transition-all duration-200 z-50 pointer-events-none" [ngClass]="width">
+      <img *ngIf="imageSrc" [src]="imageSrc" [alt]="getImageAlt()" class="w-full h-auto rounded mb-3" />
+    
+      <p class="text-base text-left text-gray-500">
         {{ text }}
       </p>
     </div>

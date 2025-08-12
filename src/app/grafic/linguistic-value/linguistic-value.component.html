@@ -47,8 +47,13 @@
     <div class="mb-4">
       <label
         for="functionTypeModal"
-        class="block text-gray-700 font-medium mb-1"
+        class="block text-gray-700 font-medium mb-1 flex items-center gap-2"
       >
+        <app-tooltip-info 
+        text="Elije 'Triangular' si existe solo 1 valor aceptable; 'Trapezoidal' si existe un rango de valores aceptables."
+        width="w-96">
+        </app-tooltip-info>
+
         {{ "GRAPHIC.BELONGING_FUNCTION" | translate }}
       </label>
       <select
@@ -73,7 +78,7 @@
         >
           <app-tooltip-info
             imageSrc="/FRUIT/assets/Trapezoidal-Punto A.png"
-            imageAlt="Diagrama trapezoidal - Punto A, inicio de la base menor"
+            imageAlt="Figura trapezoidal - Punto A"
             text=""
             width="w-96"
           >
@@ -108,7 +113,7 @@
         >
           <app-tooltip-info
             imageSrc="/FRUIT/assets/Trapezoidal-Punto B.png"
-            imageAlt="Diagrama trapezoidal - Punto B"
+            imageAlt="Figura trapezoidal - Punto B"
             text=""
             width="w-96"
           >
@@ -141,7 +146,7 @@
         >
           <app-tooltip-info
             imageSrc="/FRUIT/assets/Trapezoidal-Punto C.png"
-            imageAlt="Diagrama trapezoidal - Punto C"
+            imageAlt="Figura trapezoidal - Punto C"
             text=""
             width="w-96"
           >
@@ -174,7 +179,7 @@
         >
           <app-tooltip-info
             imageSrc="/FRUIT/assets/Trapezoidal-Punto D.png"
-            imageAlt="Diagrama trapezoidal - Punto D"
+            imageAlt="Figura trapezoidal - Punto D"
             text=""
             width="w-96"
           >
@@ -216,7 +221,7 @@
         >
           <app-tooltip-info
             imageSrc="/FRUIT/assets/Triangular - A.png"
-            imageAlt="Diagrama Triangular - Punto A"
+            imageAlt="Figura Triangular - Punto A"
             text=""
             width="w-96"
           >
@@ -249,7 +254,7 @@
         >
           <app-tooltip-info
             imageSrc="/FRUIT/assets/Triangular - B.png"
-            imageAlt="Diagrama Triangular - Punto B"
+            imageAlt="Figura Triangular - Punto B"
             text=""
             width="w-96"
           >
@@ -282,7 +287,7 @@
         >
           <app-tooltip-info
             imageSrc="/FRUIT/assets/Triangular - C.png"
-            imageAlt="Diagrama Triangular - Punto C"
+            imageAlt="Figura Triangular - Punto C"
             text=""
             width="w-96"
           >
